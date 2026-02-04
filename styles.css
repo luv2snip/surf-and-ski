@@ -1,5 +1,5 @@
 /* ========================================
-   Surf & Ski - Common Styles
+   Peak2Wave - Common Styles
    ======================================== */
 
 /* CSS Variables - Themes */
@@ -125,6 +125,24 @@ footer {
     text-align: center;
     padding: 2rem 1rem;
     margin-top: auto;
+}
+
+footer .instagram {
+    margin-top: 0.5rem;
+    font-size: 0.95rem;
+    opacity: 0.9;
+}
+
+footer .instagram a {
+    color: var(--surf-accent);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+footer .instagram a:hover {
+    color: var(--surf-yellow);
+    text-decoration: underline;
 }
 
 /* ========================================

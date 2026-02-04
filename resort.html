@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resort Details - Surf & Ski</title>
+    <title>Resort Details - Peak2Wave</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="ski-page">
@@ -29,7 +29,8 @@
     </main>
 
     <footer>
-        <p>&copy; 2026 Surf & Ski - All rights reserved</p>
+        <p>&copy; 2026 Peak2Wave - All rights reserved</p>
+        <p class="instagram">Follow us: <a href="https://instagram.com/peak.2.wave" target="_blank">@peak.2.wave</a></p>
     </footer>
 
     <script src="data_ski_resort.js"></script>
@@ -45,12 +46,12 @@
                 document.getElementById('resortDetail').style.display = 'none';
                 document.getElementById('notFound').style.display = 'block';
                 document.getElementById('resortName').textContent = 'Not Found';
-                document.title = 'Resort Not Found - Surf & Ski';
+                document.title = 'Resort Not Found - Peak2Wave';
                 return;
             }
 
             // Update page title
-            document.title = `${resort.name} - Surf & Ski`;
+            document.title = `${resort.name} - Peak2Wave`;
             document.getElementById('resortName').textContent = resort.name;
             document.getElementById('resortLocation').textContent = `${resort.region}, ${resort.country}`;
 
