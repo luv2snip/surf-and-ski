@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ski News - Surf & Ski</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="ski-page">
+    <header class="compact ski-header">
+        <h1>Ski News</h1>
+        <p>Latest updates from the slopes</p>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="ski.html">All Resorts</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="news-list" id="newsList">
+            <!-- News will be loaded by JavaScript -->
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Surf & Ski - All rights reserved</p>
+    </footer>
+
+    <script src="data_ski_news.js"></script>
+    <script src="data_ski_resort.js"></script>
+    <script>
+        function formatDate(dateString) {
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return new Date(dateString).toLocaleDateString('en-US', options);
+        }
+
+        function displayNewsList() {
+            const newsListSection = document.getElementById('newsList');
+
+            if (skiNews.length === 0) {
+                newsListSection.innerHTML = '<p style="text-align: center; color: #666;">No news available</p>';
+                return;
+            }
+
+            let html = '';
+
+            // Featured news first
+            const featuredNews = skiNews.filter(n => n.featured);
+            if (featuredNews.length > 0) {
+                featuredNews.forEach(news => {
+                    html += `
+                        <article class="news-card featured" onclick="showArticle('${news.id}')">
+                            <span class="news-badge">Featured</span>
+                            <span class="news-category">${news.category}</span>
+                            <h2>${news.title}</h2>
+                            <p class="news-subtitle">${news.subtitle}</p>
+                            <p class="news-summary">${news.summary}</p>
+                            <div class="news-meta">
+                                <span class="news-date">${formatDate(news.date)}</span>
+                                <span class="news-author">By ${news.author}</span>
+                            </div>
+                            <span class="read-more">Read full article →</span>
+                        </article>
+                    `;
+                });
+            }
+
+            // Other news
+            const otherNews = skiNews.filter(n => !n.featured);
+            if (otherNews.length > 0) {
+                html += '<div class="news-grid">';
+                otherNews.forEach(news => {
+                    html += `
+                        <article class="news-card" onclick="showArticle('${news.id}')">
+                            <span class="news-category">${news.category}</span>
+                            <h3>${news.title}</h3>
+                            <p class="news-subtitle">${news.subtitle}</p>
+                            <p class="news-summary">${news.summary}</p>
+                            <div class="news-meta">
+                                <span class="news-date">${formatDate(news.date)}</span>
+                            </div>
+                            <span class="read-more">Read more →</span>
+                        </article>
+                    `;
+                });
+                html += '</div>';
+            }
+
+            newsListSection.innerHTML = html;
+        }
+
+        function showArticle(articleId) {
+            const news = getNewsById(articleId);
+            if (!news) return;
+
+            const newsListSection = document.getElementById('newsList');
+
+            // Build related resorts section
+            let relatedHtml = '';
+            if (news.relatedResorts && news.relatedResorts.length > 0) {
+                relatedHtml = '<div class="related-resorts"><h3>Related Resorts</h3><div class="related-grid">';
+                news.relatedResorts.forEach(resortId => {
+                    const resort = getResortById(resortId);
+                    if (resort) {
+                        relatedHtml += `
+                            <a href="resort.html?id=${resort.id}" class="related-resort-card">
+                                <strong>${resort.name}</strong>
+                                <span>${resort.region}, ${resort.country}</span>
+                            </a>
+                        `;
+                    }
+                });
+                relatedHtml += '</div></div>';
+            }
+
+            newsListSection.innerHTML = `
+                <article class="news-article">
+                    <button class="btn-back-article" onclick="displayNewsList()">← Back to all news</button>
+                    <header class="article-header">
+                        <span class="news-category">${news.category}</span>
+                        <h1>${news.title}</h1>
+                        <p class="article-subtitle">${news.subtitle}</p>
+                        <div class="news-meta">
+                            <span class="news-date">${formatDate(news.date)}</span>
+                            <span class="news-author">By ${news.author}</span>
+                        </div>
+                    </header>
+                    <div class="article-content">
+                        ${news.content}
+                    </div>
+                    ${relatedHtml}
+                </article>
+            `;
+
+            window.scrollTo(0, 0);
+        }
+
+        // Initialize
+        displayNewsList();
+    </script>
+</body>
+</html>

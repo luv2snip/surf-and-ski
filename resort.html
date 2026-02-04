@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resort Details - Surf & Ski</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="ski-page">
+    <header class="compact ski-header">
+        <h1 id="resortName">Loading...</h1>
+        <p id="resortLocation"></p>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="ski.html">All Resorts</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="resort-detail" id="resortDetail">
+            <!-- Content loaded by JavaScript -->
+        </div>
+
+        <div class="resort-not-found" id="notFound" style="display: none;">
+            <h2>Resort not found</h2>
+            <p>The resort you're looking for doesn't exist.</p>
+            <a href="ski.html" class="btn-back">Back to all resorts</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Surf & Ski - All rights reserved</p>
+    </footer>
+
+    <script src="data_ski_resort.js"></script>
+    <script>
+        // Get resort ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const resortId = urlParams.get('id');
+
+        function loadResort() {
+            const resort = getResortById(resortId);
+
+            if (!resort) {
+                document.getElementById('resortDetail').style.display = 'none';
+                document.getElementById('notFound').style.display = 'block';
+                document.getElementById('resortName').textContent = 'Not Found';
+                document.title = 'Resort Not Found - Surf & Ski';
+                return;
+            }
+
+            // Update page title
+            document.title = `${resort.name} - Surf & Ski`;
+            document.getElementById('resortName').textContent = resort.name;
+            document.getElementById('resortLocation').textContent = `${resort.region}, ${resort.country}`;
+
+            // Calculate snow/price ratio
+            const snowRatio = (resort.snowBase.upper / resort.price).toFixed(2);
+
+            // Build detail content
+            const detailHTML = `
+                <div class="resort-hero">
+                    <div class="resort-badges">
+                        ${resort.popular ? '<span class="badge badge-popular">Popular</span>' : ''}
+                        ${resort.recentSnow > 20 ? '<span class="badge badge-snow">Fresh Snow</span>' : ''}
+                    </div>
+                </div>
+
+                <div class="resort-grid">
+                    <div class="resort-card">
+                        <h3>Snow Conditions</h3>
+                        <div class="stat-row">
+                            <span class="stat-label">❄️ Snow Base</span>
+                            <span class="stat-value">${resort.snowBase.lower} - ${resort.snowBase.upper} cm</span>
+                        </div>
+                        ${resort.recentSnow > 0 ? `
+                        <div class="stat-row highlight">
+                            <span class="stat-label">🆕 New Snow (7 days)</span>
+                            <span class="stat-value">+${resort.recentSnow} cm</span>
+                        </div>
+                        ` : ''}
+                    </div>
+
+                    <div class="resort-card">
+                        <h3>Altitude</h3>
+                        <div class="stat-row">
+                            <span class="stat-label">⛰️ Base</span>
+                            <span class="stat-value">${resort.altitude.min} m</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">🏔️ Summit</span>
+                            <span class="stat-value">${resort.altitude.max} m</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">📏 Vertical Drop</span>
+                            <span class="stat-value">${resort.altitude.max - resort.altitude.min} m</span>
+                        </div>
+                    </div>
+
+                    <div class="resort-card">
+                        <h3>Ski Area</h3>
+                        <div class="stat-row">
+                            <span class="stat-label">🎿 Slopes</span>
+                            <span class="stat-value">${resort.slopes} km</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">🚡 Lifts</span>
+                            <span class="stat-value">${resort.lifts}</span>
+                        </div>
+                    </div>
+
+                    <div class="resort-card">
+                        <h3>Pricing</h3>
+                        <div class="stat-row">
+                            <span class="stat-label">💶 Day Pass</span>
+                            <span class="stat-value price">€${resort.price}</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">📊 Snow/Price Ratio</span>
+                            <span class="stat-value">${snowRatio}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="resort-actions">
+                    <a href="${resort.website}" target="_blank" rel="noopener noreferrer" class="btn-primary">
+                        🌐 Visit Official Website
+                    </a>
+                    <a href="ski.html" class="btn-secondary">
+                        ← Back to all resorts
+                    </a>
+                </div>
+            `;
+
+            document.getElementById('resortDetail').innerHTML = detailHTML;
+        }
+
+        // Load resort on page load
+        loadResort();
+    </script>
+</body>
+</html>

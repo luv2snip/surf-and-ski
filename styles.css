@@ -1,0 +1,862 @@
+/* ========================================
+   Surf & Ski - Common Styles
+   ======================================== */
+
+/* CSS Variables - Themes */
+:root {
+    /* Ski Theme - Grey & White */
+    --ski-primary: #4a5568;
+    --ski-secondary: #718096;
+    --ski-dark: #2d3748;
+    --ski-light: #e2e8f0;
+    --ski-white: #f7fafc;
+    --ski-accent: #a0aec0;
+
+    /* Surf Theme - Blue & Yellow */
+    --surf-primary: #2b6cb0;
+    --surf-secondary: #3182ce;
+    --surf-dark: #1a365d;
+    --surf-light: #bee3f8;
+    --surf-accent: #ecc94b;
+    --surf-yellow: #f6e05e;
+
+    /* Neutral */
+    --text-dark: #1a202c;
+    --text-light: #718096;
+    --white: #ffffff;
+    --grey-100: #f7fafc;
+    --grey-200: #edf2f7;
+    --grey-300: #e2e8f0;
+    --grey-800: #2d3748;
+}
+
+/* Reset and base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--grey-100);
+}
+
+/* Header - Default (neutral) */
+header {
+    background: linear-gradient(135deg, var(--ski-primary) 0%, var(--ski-dark) 100%);
+    color: var(--white);
+    text-align: center;
+    padding: 3rem 1rem;
+}
+
+header h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+header.compact {
+    padding: 2rem 1rem;
+}
+
+header.compact h1 {
+    font-size: 2.5rem;
+}
+
+header.compact p {
+    font-size: 1.1rem;
+}
+
+/* Ski Header */
+header.ski-header {
+    background: linear-gradient(135deg, var(--ski-secondary) 0%, var(--ski-dark) 100%);
+}
+
+/* Surf Header (for future use) */
+header.surf-header {
+    background: linear-gradient(135deg, var(--surf-secondary) 0%, var(--surf-dark) 100%);
+}
+
+/* Navigation */
+nav {
+    background: rgba(0,0,0,0.15);
+    padding: 0.5rem;
+    margin-top: 1rem;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+nav a {
+    color: var(--white);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+nav a:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+/* Main */
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    flex: 1;
+    width: 100%;
+}
+
+/* Footer */
+footer {
+    background: var(--grey-800);
+    color: var(--white);
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-top: auto;
+}
+
+/* ========================================
+   Homepage
+   ======================================== */
+
+.hero {
+    text-align: center;
+    padding: 2rem;
+    background: var(--white);
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.hero h2 {
+    color: var(--ski-dark);
+    margin-bottom: 1rem;
+}
+
+.activities {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.activity-card {
+    display: block;
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+    border-top: 4px solid var(--ski-accent);
+}
+
+.activity-card:hover {
+    transform: translateY(-5px);
+    cursor: pointer;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+}
+
+.activity-card h3 {
+    color: var(--ski-dark);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+/* Ski themed card */
+.activity-card.ski-theme {
+    border-top-color: var(--ski-secondary);
+}
+
+.activity-card.ski-theme h3 {
+    color: var(--ski-primary);
+}
+
+/* Surf themed card */
+.activity-card.surf-theme {
+    border-top-color: var(--surf-accent);
+}
+
+.activity-card.surf-theme h3 {
+    color: var(--surf-primary);
+}
+
+/* ========================================
+   Ski Page
+   ======================================== */
+
+.ski-page {
+    background: var(--ski-white);
+}
+
+/* Search section */
+.search-section {
+    text-align: center;
+    padding: 2rem;
+    background: var(--white);
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.search-section h2 {
+    color: var(--ski-dark);
+    margin-bottom: 1.5rem;
+}
+
+.search-bar {
+    display: flex;
+    max-width: 600px;
+    margin: 0 auto;
+    gap: 0.5rem;
+}
+
+.search-bar input {
+    flex: 1;
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+    border: 2px solid var(--grey-300);
+    border-radius: 50px;
+    outline: none;
+    transition: border-color 0.3s;
+    background: var(--white);
+}
+
+.search-bar input:focus {
+    border-color: var(--ski-secondary);
+}
+
+.ski-page .search-bar button {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    background: linear-gradient(135deg, var(--ski-secondary) 0%, var(--ski-dark) 100%);
+    color: var(--white);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.ski-page .search-bar button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(74, 85, 104, 0.4);
+}
+
+/* Quick access buttons */
+.quick-access {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.quick-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2.5rem 2rem;
+    border-radius: 15px;
+    text-decoration: none;
+    color: var(--white);
+    transition: transform 0.3s, box-shadow 0.3s;
+    min-height: 200px;
+}
+
+.quick-btn:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+}
+
+.quick-btn .icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.quick-btn h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.quick-btn p {
+    font-size: 0.95rem;
+    opacity: 0.9;
+    text-align: center;
+}
+
+/* News highlight section */
+.news-highlight {
+    margin-top: 2rem;
+}
+
+.news-highlight .quick-btn {
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Ski page button colors - Grey tones */
+.ski-page .btn-news {
+    background: linear-gradient(135deg, #1a365d 0%, #2b6cb0 100%);
+    color: var(--white);
+}
+
+.ski-page .btn-snow {
+    background: linear-gradient(135deg, var(--ski-light) 0%, var(--ski-accent) 100%);
+    color: var(--ski-dark);
+}
+
+.ski-page .btn-deals {
+    background: linear-gradient(135deg, var(--ski-secondary) 0%, var(--ski-primary) 100%);
+}
+
+.ski-page .btn-popular {
+    background: linear-gradient(135deg, var(--ski-primary) 0%, var(--ski-dark) 100%);
+}
+
+/* Surf page button colors - Blue & Yellow (for future use) */
+.surf-page .btn-snow {
+    background: linear-gradient(135deg, var(--surf-light) 0%, var(--surf-secondary) 100%);
+}
+
+.surf-page .btn-deals {
+    background: linear-gradient(135deg, var(--surf-accent) 0%, #d69e2e 100%);
+    color: var(--surf-dark);
+}
+
+.surf-page .btn-popular {
+    background: linear-gradient(135deg, var(--surf-secondary) 0%, var(--surf-dark) 100%);
+}
+
+/* Resort list */
+.stations-list {
+    margin-top: 3rem;
+    display: none;
+}
+
+.stations-list.active {
+    display: block;
+}
+
+.stations-list h2 {
+    color: var(--ski-dark);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.station-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.station-card {
+    background: var(--white);
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+    border-left: 4px solid var(--ski-secondary);
+}
+
+.station-card:hover {
+    transform: translateY(-5px);
+}
+
+.station-card h4 {
+    color: var(--ski-dark);
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.station-card .resort-location {
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+.station-card .resort-altitude {
+    color: var(--ski-primary);
+    font-size: 0.9rem;
+    margin: 0.3rem 0;
+}
+
+.station-card .snow-info {
+    color: var(--ski-secondary);
+    font-weight: bold;
+    margin: 0.5rem 0;
+}
+
+.station-card .recent-snow {
+    color: #2b6cb0;
+    font-weight: bold;
+    background: #bee3f8;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    display: inline-block;
+    font-size: 0.85rem;
+    margin: 0.3rem 0;
+}
+
+.station-card .price-info {
+    color: var(--ski-primary);
+}
+
+.station-card .resort-stats {
+    color: var(--text-light);
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--grey-200);
+}
+
+/* Clickable station cards */
+a.station-card {
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    cursor: pointer;
+}
+
+a.station-card:hover {
+    border-left-color: var(--ski-dark);
+}
+
+a.station-card .card-arrow {
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    color: var(--ski-accent);
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+a.station-card:hover .card-arrow {
+    opacity: 1;
+    transform: translateY(-50%) translateX(5px);
+}
+
+/* ========================================
+   Resort Detail Page
+   ======================================== */
+
+.resort-detail {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.resort-hero {
+    margin-bottom: 2rem;
+}
+
+.resort-badges {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.badge {
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.badge-popular {
+    background: var(--ski-primary);
+    color: var(--white);
+}
+
+.badge-snow {
+    background: #bee3f8;
+    color: #2b6cb0;
+}
+
+.resort-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.resort-card {
+    background: var(--white);
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.resort-card h3 {
+    color: var(--ski-dark);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--ski-light);
+}
+
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--grey-200);
+}
+
+.stat-row:last-child {
+    border-bottom: none;
+}
+
+.stat-label {
+    color: var(--text-light);
+}
+
+.stat-value {
+    font-weight: 600;
+    color: var(--ski-dark);
+}
+
+.stat-value.price {
+    font-size: 1.2rem;
+    color: var(--ski-primary);
+}
+
+.stat-row.highlight {
+    background: #bee3f8;
+    margin: 0.5rem -1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 5px;
+    border-bottom: none;
+}
+
+.stat-row.highlight .stat-value {
+    color: #2b6cb0;
+}
+
+.resort-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+.btn-primary,
+.btn-secondary {
+    display: inline-block;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--ski-secondary) 0%, var(--ski-dark) 100%);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(45, 55, 72, 0.3);
+}
+
+.btn-secondary {
+    background: var(--white);
+    color: var(--ski-dark);
+    border: 2px solid var(--ski-secondary);
+}
+
+.btn-secondary:hover {
+    background: var(--ski-light);
+}
+
+.btn-back {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: var(--ski-secondary);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
+.resort-not-found {
+    text-align: center;
+    padding: 3rem;
+    background: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.resort-not-found h2 {
+    color: var(--ski-dark);
+    margin-bottom: 1rem;
+}
+
+/* ========================================
+   News Page
+   ======================================== */
+
+.news-list {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.news-card {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    margin-bottom: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+}
+
+.news-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+}
+
+.news-card.featured {
+    border-left: 4px solid #2b6cb0;
+    background: linear-gradient(135deg, var(--white) 0%, #f0f7ff 100%);
+}
+
+.news-card.featured h2 {
+    font-size: 1.8rem;
+    color: var(--ski-dark);
+    margin-bottom: 0.5rem;
+}
+
+.news-badge {
+    display: inline-block;
+    background: #2b6cb0;
+    color: var(--white);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.news-category {
+    display: inline-block;
+    background: var(--ski-light);
+    color: var(--ski-dark);
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    margin-left: 0.5rem;
+}
+
+.news-card.featured .news-category {
+    margin-left: 0;
+}
+
+.news-card h3 {
+    font-size: 1.3rem;
+    color: var(--ski-dark);
+    margin-bottom: 0.5rem;
+}
+
+.news-subtitle {
+    color: var(--text-light);
+    font-style: italic;
+    margin-bottom: 1rem;
+}
+
+.news-summary {
+    color: var(--text-dark);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+.news-meta {
+    display: flex;
+    gap: 1rem;
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.read-more {
+    color: #2b6cb0;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.news-grid .news-card {
+    margin-bottom: 0;
+}
+
+/* Article view */
+.news-article {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.btn-back-article {
+    background: none;
+    border: none;
+    color: #2b6cb0;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.5rem 0;
+    margin-bottom: 1rem;
+}
+
+.btn-back-article:hover {
+    text-decoration: underline;
+}
+
+.article-header {
+    border-bottom: 2px solid var(--grey-200);
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.article-header h1 {
+    font-size: 2rem;
+    color: var(--ski-dark);
+    margin: 0.5rem 0;
+}
+
+.article-subtitle {
+    font-size: 1.2rem;
+    color: var(--text-light);
+    font-style: italic;
+    margin-bottom: 1rem;
+}
+
+.article-content {
+    line-height: 1.8;
+    color: var(--text-dark);
+}
+
+.article-content h3 {
+    color: var(--ski-dark);
+    margin: 2rem 0 1rem;
+}
+
+.article-content p {
+    margin-bottom: 1rem;
+}
+
+.article-content ul {
+    margin: 1rem 0 1rem 2rem;
+}
+
+.article-content li {
+    margin-bottom: 0.5rem;
+}
+
+/* Related resorts */
+.related-resorts {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 2px solid var(--grey-200);
+}
+
+.related-resorts h3 {
+    color: var(--ski-dark);
+    margin-bottom: 1rem;
+}
+
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.related-resort-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background: var(--grey-100);
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.3s;
+}
+
+.related-resort-card:hover {
+    background: var(--ski-light);
+}
+
+.related-resort-card strong {
+    color: var(--ski-dark);
+    margin-bottom: 0.25rem;
+}
+
+.related-resort-card span {
+    font-size: 0.85rem;
+    color: var(--text-light);
+}
+
+/* ========================================
+   Responsive
+   ======================================== */
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+
+    header.compact h1 {
+        font-size: 1.8rem;
+    }
+
+    .search-bar {
+        flex-direction: column;
+    }
+
+    .search-bar button {
+        width: 100%;
+    }
+
+    .quick-btn {
+        min-height: 150px;
+        padding: 1.5rem;
+    }
+
+    .quick-btn .icon {
+        font-size: 3rem;
+    }
+
+    .resort-actions {
+        flex-direction: column;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        width: 100%;
+    }
+
+    .resort-grid {
+        grid-template-columns: 1fr;
+    }
+}

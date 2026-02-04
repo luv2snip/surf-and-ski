@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ski - Surf & Ski</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="ski-page">
+    <header class="compact ski-header">
+        <h1>Ski Resorts</h1>
+        <p>Find the perfect resort for your vacation</p>
+        <nav>
+            <a href="index.html">Home</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="search-section">
+            <h2>Search for a resort</h2>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Resort name, region, country...">
+                <button onclick="searchStations()">Search</button>
+            </div>
+        </section>
+
+        <section class="news-highlight">
+            <a href="ski-news.html" class="quick-btn btn-news">
+                <span class="icon">📰</span>
+                <h3>Ski News</h3>
+                <p>Latest updates from the slopes</p>
+            </a>
+        </section>
+
+        <section class="quick-access">
+            <a href="#" class="quick-btn btn-snow" onclick="showSnowfall(); return false;">
+                <span class="icon">❄️</span>
+                <h3>Latest Snowfall</h3>
+                <p>See where it snowed recently</p>
+            </a>
+
+            <a href="#" class="quick-btn btn-deals" onclick="showDeals(); return false;">
+                <span class="icon">💰</span>
+                <h3>Best Deals</h3>
+                <p>Best snow-to-price ratio</p>
+            </a>
+
+            <a href="#" class="quick-btn btn-popular" onclick="showPopular(); return false;">
+                <span class="icon">⭐</span>
+                <h3>Popular Resorts</h3>
+                <p>Most visited destinations</p>
+            </a>
+        </section>
+
+        <section class="stations-list" id="stationsList">
+            <h2 id="listTitle">Results</h2>
+            <div class="station-grid" id="stationGrid">
+                <!-- Resorts will be displayed here -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Surf & Ski - All rights reserved</p>
+    </footer>
+
+    <script src="data_ski_resort.js"></script>
+    <script>
+        function displayStations(resortsToShow, title) {
+            const listSection = document.getElementById('stationsList');
+            const listTitle = document.getElementById('listTitle');
+            const grid = document.getElementById('stationGrid');
+
+            listTitle.textContent = title;
+            grid.innerHTML = '';
+
+            if (resortsToShow.length === 0) {
+                grid.innerHTML = '<p style="text-align: center; grid-column: 1/-1; color: #666;">No resort found</p>';
+            } else {
+                resortsToShow.forEach(resort => {
+                    const card = document.createElement('a');
+                    card.href = `resort.html?id=${resort.id}`;
+                    card.className = 'station-card';
+                    card.innerHTML = `
+                        <h4>${resort.name}</h4>
+                        <p class="resort-location">${resort.region}, ${resort.country}</p>
+                        <p class="resort-altitude">⛰️ ${resort.altitude.min}m - ${resort.altitude.max}m</p>
+                        <p class="snow-info">❄️ Snow: ${resort.snowBase.lower}-${resort.snowBase.upper} cm</p>
+                        ${resort.recentSnow > 0 ? `<p class="recent-snow">🆕 +${resort.recentSnow} cm this week</p>` : ''}
+                        <p class="price-info">💶 Day pass: €${resort.price}</p>
+                        <p class="resort-stats">🎿 ${resort.slopes} km · ${resort.lifts} lifts</p>
+                        <span class="card-arrow">→</span>
+                    `;
+                    grid.appendChild(card);
+                });
+            }
+
+            listSection.classList.add('active');
+            listSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function searchStations() {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            if (!query) {
+                displayStations(skiResorts, `All resorts (${skiResorts.length})`);
+                return;
+            }
+            const filtered = skiResorts.filter(s =>
+                s.name.toLowerCase().includes(query) ||
+                s.region.toLowerCase().includes(query) ||
+                s.country.toLowerCase().includes(query)
+            );
+            displayStations(filtered, `Results for "${query}" (${filtered.length})`);
+        }
+
+        function showSnowfall() {
+            const sorted = [...skiResorts]
+                .filter(s => s.recentSnow > 0)
+                .sort((a, b) => b.recentSnow - a.recentSnow);
+            displayStations(sorted, `❄️ Latest Snowfall (${sorted.length} resorts)`);
+        }
+
+        function showDeals() {
+            const sorted = [...skiResorts]
+                .map(s => ({ ...s, ratio: s.snowBase.upper / s.price }))
+                .sort((a, b) => b.ratio - a.ratio)
+                .slice(0, 10);
+            displayStations(sorted, '💰 Best Snow-to-Price Ratio (Top 10)');
+        }
+
+        function showPopular() {
+            const popular = skiResorts.filter(s => s.popular);
+            displayStations(popular, `⭐ Popular Resorts (${popular.length})`);
+        }
+
+        // Search with Enter key
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchStations();
+            }
+        });
+    </script>
+</body>
+</html>
