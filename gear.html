@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gear Finder - Surf & Ski</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="gear-page">
+    <header class="compact">
+        <h1>Gear Finder</h1>
+        <p>Find the perfect equipment for your needs</p>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="ski.html">Ski Resorts</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="gear-wizard" id="gearWizard">
+            <div class="wizard-step active" id="step1">
+                <h2>What activity are you gearing up for?</h2>
+                <div class="activity-choices">
+                    <button class="choice-btn" onclick="selectActivity('ski')">
+                        <span class="choice-icon">⛷️</span>
+                        <span class="choice-label">Ski</span>
+                        <span class="choice-desc">Alpine skiing equipment</span>
+                    </button>
+                    <button class="choice-btn" onclick="selectActivity('snowboard')">
+                        <span class="choice-icon">🏂</span>
+                        <span class="choice-label">Snowboard</span>
+                        <span class="choice-desc">Snowboarding gear</span>
+                    </button>
+                    <button class="choice-btn" onclick="selectActivity('surf')">
+                        <span class="choice-icon">🏄</span>
+                        <span class="choice-label">Surf</span>
+                        <span class="choice-desc">Surfing equipment</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="wizard-step" id="step2">
+                <h2>What's your level?</h2>
+                <div class="level-choices">
+                    <button class="choice-btn" onclick="selectLevel('beginner')">
+                        <span class="choice-icon">🌱</span>
+                        <span class="choice-label">Beginner</span>
+                        <span class="choice-desc">Just starting out</span>
+                    </button>
+                    <button class="choice-btn" onclick="selectLevel('intermediate')">
+                        <span class="choice-icon">📈</span>
+                        <span class="choice-label">Intermediate</span>
+                        <span class="choice-desc">Comfortable on most terrain</span>
+                    </button>
+                    <button class="choice-btn" onclick="selectLevel('advanced')">
+                        <span class="choice-icon">🏆</span>
+                        <span class="choice-label">Advanced</span>
+                        <span class="choice-desc">Expert looking for performance</span>
+                    </button>
+                </div>
+                <button class="back-btn" onclick="goToStep(1)">← Back</button>
+            </div>
+
+            <div class="wizard-step" id="step3">
+                <h2>Are you looking to buy or rent?</h2>
+                <div class="purchase-choices">
+                    <button class="choice-btn" onclick="selectPurchase('buy')">
+                        <span class="choice-icon">🛒</span>
+                        <span class="choice-label">Buy</span>
+                        <span class="choice-desc">Own your equipment</span>
+                    </button>
+                    <button class="choice-btn" onclick="selectPurchase('rent')">
+                        <span class="choice-icon">🔄</span>
+                        <span class="choice-label">Rent</span>
+                        <span class="choice-desc">Rent for your trip</span>
+                    </button>
+                </div>
+                <button class="back-btn" onclick="goToStep(2)">← Back</button>
+            </div>
+
+            <div class="wizard-step" id="step4">
+                <h2>Where will you be using your gear?</h2>
+                <div class="location-choices">
+                    <button class="choice-btn" onclick="selectLocation('alps')">
+                        <span class="choice-icon">🏔️</span>
+                        <span class="choice-label">The Alps</span>
+                        <span class="choice-desc">France, Switzerland, Austria, Italy</span>
+                    </button>
+                    <button class="choice-btn" onclick="selectLocation('europe-other')">
+                        <span class="choice-icon">🌍</span>
+                        <span class="choice-label">Other Europe</span>
+                        <span class="choice-desc">Scandinavia, Pyrenees, etc.</span>
+                    </button>
+                    <button class="choice-btn" onclick="selectLocation('worldwide')">
+                        <span class="choice-icon">🌎</span>
+                        <span class="choice-label">Worldwide</span>
+                        <span class="choice-desc">North America, Japan, etc.</span>
+                    </button>
+                </div>
+                <button class="back-btn" onclick="goToStep(3)">← Back</button>
+            </div>
+        </section>
+
+        <section class="gear-results" id="gearResults" style="display: none;">
+            <div class="results-header">
+                <h2>Recommended Gear</h2>
+                <p id="resultsSubtitle"></p>
+                <button class="restart-btn" onclick="restartWizard()">Start Over</button>
+            </div>
+            <div class="gear-grid" id="gearGrid">
+                <!-- Gear recommendations will be displayed here -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Surf & Ski - All rights reserved</p>
+    </footer>
+
+    <script src="data_ski_gear.js"></script>
+    <script src="data_surf_gear.js"></script>
+    <script>
+        let userChoices = {
+            activity: null,
+            level: null,
+            purchase: null,
+            location: null
+        };
+
+        function selectActivity(activity) {
+            userChoices.activity = activity;
+            goToStep(2);
+        }
+
+        function selectLevel(level) {
+            userChoices.level = level;
+            goToStep(3);
+        }
+
+        function selectPurchase(purchase) {
+            userChoices.purchase = purchase;
+            goToStep(4);
+        }
+
+        function selectLocation(location) {
+            userChoices.location = location;
+            showResults();
+        }
+
+        function goToStep(stepNum) {
+            document.querySelectorAll('.wizard-step').forEach(step => {
+                step.classList.remove('active');
+            });
+            document.getElementById(`step${stepNum}`).classList.add('active');
+        }
+
+        function showResults() {
+            document.getElementById('gearWizard').style.display = 'none';
+            document.getElementById('gearResults').style.display = 'block';
+
+            const activityLabel = {
+                'ski': 'Skiing',
+                'snowboard': 'Snowboarding',
+                'surf': 'Surfing'
+            }[userChoices.activity];
+
+            const levelLabel = {
+                'beginner': 'Beginner',
+                'intermediate': 'Intermediate',
+                'advanced': 'Advanced'
+            }[userChoices.level];
+
+            document.getElementById('resultsSubtitle').textContent =
+                `${activityLabel} gear for ${levelLabel} level - ${userChoices.purchase === 'buy' ? 'Purchase' : 'Rental'} options`;
+
+            displayGearRecommendations();
+        }
+
+        function displayGearRecommendations() {
+            const grid = document.getElementById('gearGrid');
+            grid.innerHTML = '';
+
+            let gearData = [];
+
+            if (userChoices.activity === 'ski') {
+                gearData = skiGear.filter(g =>
+                    g.level === userChoices.level || g.level === 'all'
+                );
+            } else if (userChoices.activity === 'snowboard') {
+                gearData = snowboardGear.filter(g =>
+                    g.level === userChoices.level || g.level === 'all'
+                );
+            } else if (userChoices.activity === 'surf') {
+                gearData = surfGear.filter(g =>
+                    g.level === userChoices.level || g.level === 'all'
+                );
+            }
+
+            if (gearData.length === 0) {
+                grid.innerHTML = '<p class="no-results">No gear recommendations available for this selection yet.</p>';
+                return;
+            }
+
+            gearData.forEach(item => {
+                const priceMultiplier = userChoices.purchase === 'rent' ? 0.1 : 1;
+                const priceLabel = userChoices.purchase === 'rent' ? '/day' : '';
+
+                const card = document.createElement('div');
+                card.className = 'gear-card';
+                card.innerHTML = `
+                    <div class="gear-category">${item.category}</div>
+                    <h3>${item.name}</h3>
+                    <p class="gear-description">${item.description}</p>
+                    <div class="gear-features">
+                        ${item.features ? item.features.map(f => `<span class="feature-tag">${f}</span>`).join('') : ''}
+                    </div>
+                    <div class="gear-price">
+                        <span class="price-label">${userChoices.purchase === 'buy' ? 'Price Range' : 'Rental Price'}</span>
+                        <span class="price-value">€${Math.round(item.priceRange.min * priceMultiplier)} - €${Math.round(item.priceRange.max * priceMultiplier)}${priceLabel}</span>
+                    </div>
+                    <div class="gear-brands">
+                        <span class="brands-label">Recommended brands:</span>
+                        <span class="brands-list">${item.brands ? item.brands.join(', ') : 'Various'}</span>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function restartWizard() {
+            userChoices = {
+                activity: null,
+                level: null,
+                purchase: null,
+                location: null
+            };
+            document.getElementById('gearResults').style.display = 'none';
+            document.getElementById('gearWizard').style.display = 'block';
+            goToStep(1);
+        }
+    </script>
+</body>
+</html>
