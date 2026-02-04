@@ -80,22 +80,8 @@
 
             <div class="wizard-step" id="step4">
                 <h2>Where will you be using your gear?</h2>
-                <div class="location-choices">
-                    <button class="choice-btn" onclick="selectLocation('alps')">
-                        <span class="choice-icon">🏔️</span>
-                        <span class="choice-label">The Alps</span>
-                        <span class="choice-desc">France, Switzerland, Austria, Italy</span>
-                    </button>
-                    <button class="choice-btn" onclick="selectLocation('europe-other')">
-                        <span class="choice-icon">🌍</span>
-                        <span class="choice-label">Other Europe</span>
-                        <span class="choice-desc">Scandinavia, Pyrenees, etc.</span>
-                    </button>
-                    <button class="choice-btn" onclick="selectLocation('worldwide')">
-                        <span class="choice-icon">🌎</span>
-                        <span class="choice-label">Worldwide</span>
-                        <span class="choice-desc">North America, Japan, etc.</span>
-                    </button>
+                <div class="location-choices" id="locationChoices">
+                    <!-- Location options will be dynamically inserted based on activity -->
                 </div>
                 <button class="back-btn" onclick="goToStep(3)">← Back</button>
             </div>
@@ -139,7 +125,51 @@
 
         function selectPurchase(purchase) {
             userChoices.purchase = purchase;
+            updateLocationOptions();
             goToStep(4);
+        }
+
+        function updateLocationOptions() {
+            const container = document.getElementById('locationChoices');
+
+            if (userChoices.activity === 'surf') {
+                container.innerHTML = `
+                    <button class="choice-btn" onclick="selectLocation('atlantic-europe')">
+                        <span class="choice-icon">🌊</span>
+                        <span class="choice-label">Atlantic Europe</span>
+                        <span class="choice-desc">France, Portugal, Spain, UK</span>
+                    </button>
+                    <button class="choice-btn" onclick="selectLocation('pacific')">
+                        <span class="choice-icon">🏝️</span>
+                        <span class="choice-label">Pacific</span>
+                        <span class="choice-desc">California, Hawaii, Australia</span>
+                    </button>
+                    <button class="choice-btn" onclick="selectLocation('tropical')">
+                        <span class="choice-icon">🌴</span>
+                        <span class="choice-label">Tropical</span>
+                        <span class="choice-desc">Bali, Costa Rica, Caribbean</span>
+                    </button>
+                `;
+            } else {
+                // Ski or Snowboard locations
+                container.innerHTML = `
+                    <button class="choice-btn" onclick="selectLocation('alps')">
+                        <span class="choice-icon">🏔️</span>
+                        <span class="choice-label">The Alps</span>
+                        <span class="choice-desc">France, Switzerland, Austria, Italy</span>
+                    </button>
+                    <button class="choice-btn" onclick="selectLocation('europe-other')">
+                        <span class="choice-icon">🌍</span>
+                        <span class="choice-label">Other Europe</span>
+                        <span class="choice-desc">Scandinavia, Pyrenees, etc.</span>
+                    </button>
+                    <button class="choice-btn" onclick="selectLocation('worldwide')">
+                        <span class="choice-icon">🌎</span>
+                        <span class="choice-label">Worldwide</span>
+                        <span class="choice-desc">North America, Japan, etc.</span>
+                    </button>
+                `;
+            }
         }
 
         function selectLocation(location) {
