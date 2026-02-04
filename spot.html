@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spot Details - Surf & Ski</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="surf-page">
+    <header class="compact surf-header">
+        <h1 id="spotName">Loading...</h1>
+        <p id="spotLocation"></p>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="surf.html">All Spots</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="spot-detail" id="spotDetail">
+            <!-- Content loaded by JavaScript -->
+        </div>
+
+        <div class="resort-not-found" id="notFound" style="display: none;">
+            <h2>Spot not found</h2>
+            <p>The surf spot you're looking for doesn't exist.</p>
+            <a href="surf.html" class="btn-back">Back to all spots</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Surf & Ski - All rights reserved</p>
+    </footer>
+
+    <script src="data_surf_resort.js"></script>
+    <script>
+        // Get spot ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const spotId = urlParams.get('id');
+
+        function loadSpot() {
+            const spot = getSpotById(spotId);
+
+            if (!spot) {
+                document.getElementById('spotDetail').style.display = 'none';
+                document.getElementById('notFound').style.display = 'block';
+                document.getElementById('spotName').textContent = 'Not Found';
+                document.title = 'Spot Not Found - Surf & Ski';
+                return;
+            }
+
+            // Update page title
+            document.title = `${spot.name} - Surf & Ski`;
+            document.getElementById('spotName').textContent = spot.name;
+            document.getElementById('spotLocation').textContent = `${spot.region}, ${spot.country}`;
+
+            // Level badge colors
+            const levelBadgeClass = {
+                'beginner': 'badge-beginner',
+                'intermediate': 'badge-intermediate',
+                'advanced': 'badge-advanced'
+            }[spot.level];
+
+            // Crowd indicator
+            const crowdEmoji = {
+                'low': '🟢',
+                'medium': '🟡',
+                'high': '🔴'
+            }[spot.crowd];
+
+            // Build detail content
+            const detailHTML = `
+                <div class="resort-hero surf">
+                    <div class="resort-badges">
+                        ${spot.popular ? '<span class="badge badge-popular surf">Popular</span>' : ''}
+                        <span class="badge ${levelBadgeClass}">${spot.level.charAt(0).toUpperCase() + spot.level.slice(1)}</span>
+                    </div>
+                </div>
+
+                <div class="spot-description">
+                    <p>${spot.description}</p>
+                </div>
+
+                <div class="resort-grid">
+                    <div class="resort-card surf">
+                        <h3>Wave Conditions</h3>
+                        <div class="stat-row">
+                            <span class="stat-label">🌊 Wave Type</span>
+                            <span class="stat-value">${spot.waveType}</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">📏 Wave Height</span>
+                            <span class="stat-value">${spot.waveHeight.min}m - ${spot.waveHeight.max}m</span>
+                        </div>
+                    </div>
+
+                    <div class="resort-card surf">
+                        <h3>Water Temperature</h3>
+                        <div class="stat-row">
+                            <span class="stat-label">☀️ Summer</span>
+                            <span class="stat-value">${spot.waterTemp.summer}°C</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">❄️ Winter</span>
+                            <span class="stat-value">${spot.waterTemp.winter}°C</span>
+                        </div>
+                    </div>
+
+                    <div class="resort-card surf">
+                        <h3>Best Time to Visit</h3>
+                        <div class="stat-row">
+                            <span class="stat-label">📅 Best Season</span>
+                            <span class="stat-value">${spot.bestSeason}</span>
+                        </div>
+                    </div>
+
+                    <div class="resort-card surf">
+                        <h3>Crowd & Level</h3>
+                        <div class="stat-row">
+                            <span class="stat-label">${crowdEmoji} Crowd Level</span>
+                            <span class="stat-value">${spot.crowd.charAt(0).toUpperCase() + spot.crowd.slice(1)}</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">🏄 Skill Level</span>
+                            <span class="stat-value">${spot.level.charAt(0).toUpperCase() + spot.level.slice(1)}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="resort-actions">
+                    <a href="${spot.website}" target="_blank" rel="noopener noreferrer" class="btn-primary surf">
+                        🌐 Visit Official Website
+                    </a>
+                    <a href="surf.html" class="btn-secondary surf">
+                        ← Back to all spots
+                    </a>
+                </div>
+            `;
+
+            document.getElementById('spotDetail').innerHTML = detailHTML;
+        }
+
+        // Load spot on page load
+        loadSpot();
+    </script>
+</body>
+</html>

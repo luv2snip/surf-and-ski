@@ -1045,6 +1045,265 @@ a.station-card:hover .card-arrow {
 }
 
 /* ========================================
+   Surf Page Styles
+   ======================================== */
+
+.surf-page {
+    background: linear-gradient(180deg, #f0f7ff 0%, var(--grey-100) 100%);
+}
+
+/* Surf search bar */
+.surf-page .search-bar input:focus {
+    border-color: var(--surf-secondary);
+}
+
+.surf-page .search-bar button {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    background: linear-gradient(135deg, var(--surf-secondary) 0%, var(--surf-dark) 100%);
+    color: var(--white);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.surf-page .search-bar button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(43, 108, 176, 0.4);
+}
+
+/* Surf quick buttons */
+.surf-page .btn-surf-news {
+    background: linear-gradient(135deg, var(--surf-secondary) 0%, var(--surf-dark) 100%);
+}
+
+.surf-page .btn-waves {
+    background: linear-gradient(135deg, var(--surf-light) 0%, var(--surf-secondary) 100%);
+    color: var(--surf-dark);
+}
+
+.surf-page .btn-beginner {
+    background: linear-gradient(135deg, var(--surf-accent) 0%, #d69e2e 100%);
+    color: var(--surf-dark);
+}
+
+.surf-page .btn-popular-surf {
+    background: linear-gradient(135deg, var(--surf-secondary) 0%, var(--surf-dark) 100%);
+}
+
+/* Spots list */
+.spots-list {
+    margin-top: 3rem;
+    display: none;
+}
+
+.spots-list.active {
+    display: block;
+}
+
+.spots-list h2 {
+    color: var(--surf-dark);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.spot-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Spot cards */
+.spot-card {
+    background: var(--white);
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+    border-left: 4px solid var(--surf-secondary);
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    position: relative;
+}
+
+.spot-card:hover {
+    transform: translateY(-5px);
+    border-left-color: var(--surf-dark);
+}
+
+.spot-card h4 {
+    color: var(--surf-dark);
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.spot-card .spot-location {
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+.spot-card .wave-type {
+    color: var(--surf-primary);
+    font-size: 0.9rem;
+    margin: 0.3rem 0;
+}
+
+.spot-card .wave-height {
+    color: var(--surf-secondary);
+    font-weight: bold;
+    margin: 0.5rem 0;
+}
+
+.spot-card .water-temp {
+    color: var(--text-light);
+    font-size: 0.85rem;
+}
+
+.spot-card .best-season {
+    color: var(--surf-primary);
+    font-size: 0.85rem;
+    margin: 0.3rem 0;
+}
+
+.spot-card .spot-level {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+}
+
+.spot-card .spot-level.level-beginner {
+    background: #c6f6d5;
+    color: #22543d;
+}
+
+.spot-card .spot-level.level-intermediate {
+    background: #feebc8;
+    color: #7b341e;
+}
+
+.spot-card .spot-level.level-advanced {
+    background: #fed7d7;
+    color: #822727;
+}
+
+.spot-card .card-arrow {
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    color: var(--surf-accent);
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+.spot-card:hover .card-arrow {
+    opacity: 1;
+    transform: translateY(-50%) translateX(5px);
+}
+
+/* Spot detail page */
+.spot-detail {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.spot-description {
+    background: var(--white);
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--text-dark);
+    border-left: 4px solid var(--surf-accent);
+}
+
+/* Surf themed badges */
+.badge-popular.surf {
+    background: var(--surf-primary);
+}
+
+.badge-beginner {
+    background: #c6f6d5;
+    color: #22543d;
+}
+
+.badge-intermediate {
+    background: #feebc8;
+    color: #7b341e;
+}
+
+.badge-advanced {
+    background: #fed7d7;
+    color: #822727;
+}
+
+/* Surf themed cards */
+.resort-card.surf h3 {
+    border-bottom-color: var(--surf-light);
+    color: var(--surf-dark);
+}
+
+/* Surf themed buttons */
+.btn-primary.surf {
+    background: linear-gradient(135deg, var(--surf-secondary) 0%, var(--surf-dark) 100%);
+}
+
+.btn-primary.surf:hover {
+    box-shadow: 0 6px 20px rgba(43, 108, 176, 0.3);
+}
+
+.btn-secondary.surf {
+    border-color: var(--surf-secondary);
+    color: var(--surf-dark);
+}
+
+.btn-secondary.surf:hover {
+    background: var(--surf-light);
+}
+
+/* Surf news styles */
+.news-card.surf-news.featured {
+    border-left-color: var(--surf-primary);
+    background: linear-gradient(135deg, var(--white) 0%, #fffff0 100%);
+}
+
+.news-badge.surf {
+    background: var(--surf-primary);
+}
+
+.news-category.surf {
+    background: var(--surf-light);
+    color: var(--surf-dark);
+}
+
+.read-more.surf {
+    color: var(--surf-primary);
+}
+
+.btn-back-article.surf {
+    color: var(--surf-primary);
+}
+
+.related-resorts.surf h3 {
+    color: var(--surf-dark);
+}
+
+.related-resort-card.surf:hover {
+    background: var(--surf-light);
+}
+
+.related-resort-card.surf strong {
+    color: var(--surf-dark);
+}
+
+/* ========================================
    Responsive
    ======================================== */
 

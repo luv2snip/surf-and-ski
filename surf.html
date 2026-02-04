@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surf - Surf & Ski</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="surf-page">
+    <header class="compact surf-header">
+        <h1>Surf Spots</h1>
+        <p>Find the perfect wave for your next session</p>
+        <nav>
+            <a href="index.html">Home</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="search-section">
+            <h2>Search for a spot</h2>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Spot name, region, country...">
+                <button onclick="searchSpots()">Search</button>
+            </div>
+        </section>
+
+        <section class="news-highlight">
+            <a href="surf-news.html" class="quick-btn btn-surf-news">
+                <span class="icon">📰</span>
+                <h3>Surf News</h3>
+                <p>Latest updates from the lineup</p>
+            </a>
+        </section>
+
+        <section class="quick-access">
+            <a href="#" class="quick-btn btn-waves" onclick="showBigWaves(); return false;">
+                <span class="icon">🌊</span>
+                <h3>Big Waves</h3>
+                <p>Spots with the biggest swells</p>
+            </a>
+
+            <a href="#" class="quick-btn btn-beginner" onclick="showBeginnerSpots(); return false;">
+                <span class="icon">🏄</span>
+                <h3>Beginner Friendly</h3>
+                <p>Perfect spots to learn</p>
+            </a>
+
+            <a href="#" class="quick-btn btn-popular-surf" onclick="showPopular(); return false;">
+                <span class="icon">⭐</span>
+                <h3>Popular Spots</h3>
+                <p>Most visited destinations</p>
+            </a>
+        </section>
+
+        <section class="spots-list" id="spotsList">
+            <h2 id="listTitle">Results</h2>
+            <div class="spot-grid" id="spotGrid">
+                <!-- Spots will be displayed here -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Surf & Ski - All rights reserved</p>
+    </footer>
+
+    <script src="data_surf_resort.js"></script>
+    <script>
+        function displaySpots(spotsToShow, title) {
+            const listSection = document.getElementById('spotsList');
+            const listTitle = document.getElementById('listTitle');
+            const grid = document.getElementById('spotGrid');
+
+            listTitle.textContent = title;
+            grid.innerHTML = '';
+
+            if (spotsToShow.length === 0) {
+                grid.innerHTML = '<p style="text-align: center; grid-column: 1/-1; color: #666;">No spot found</p>';
+            } else {
+                spotsToShow.forEach(spot => {
+                    const card = document.createElement('a');
+                    card.href = `spot.html?id=${spot.id}`;
+                    card.className = 'spot-card';
+                    card.innerHTML = `
+                        <h4>${spot.name}</h4>
+                        <p class="spot-location">${spot.region}, ${spot.country}</p>
+                        <p class="wave-type">🌊 ${spot.waveType}</p>
+                        <p class="wave-height">📏 ${spot.waveHeight.min}m - ${spot.waveHeight.max}m</p>
+                        <p class="water-temp">🌡️ ${spot.waterTemp.summer}°C summer / ${spot.waterTemp.winter}°C winter</p>
+                        <p class="best-season">📅 ${spot.bestSeason}</p>
+                        <p class="spot-level level-${spot.level}">${spot.level.charAt(0).toUpperCase() + spot.level.slice(1)}</p>
+                        <span class="card-arrow">→</span>
+                    `;
+                    grid.appendChild(card);
+                });
+            }
+
+            listSection.classList.add('active');
+            listSection.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function searchSpots() {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            if (!query) {
+                displaySpots(surfSpots, `All spots (${surfSpots.length})`);
+                return;
+            }
+            const filtered = surfSpots.filter(s =>
+                s.name.toLowerCase().includes(query) ||
+                s.region.toLowerCase().includes(query) ||
+                s.country.toLowerCase().includes(query)
+            );
+            displaySpots(filtered, `Results for "${query}" (${filtered.length})`);
+        }
+
+        function showBigWaves() {
+            const sorted = [...surfSpots]
+                .filter(s => s.waveHeight.max >= 3.0)
+                .sort((a, b) => b.waveHeight.max - a.waveHeight.max);
+            displaySpots(sorted, `🌊 Big Wave Spots (${sorted.length})`);
+        }
+
+        function showBeginnerSpots() {
+            const beginnerSpots = surfSpots.filter(s => s.level === 'beginner');
+            displaySpots(beginnerSpots, `🏄 Beginner Friendly Spots (${beginnerSpots.length})`);
+        }
+
+        function showPopular() {
+            const popular = surfSpots.filter(s => s.popular);
+            displaySpots(popular, `⭐ Popular Spots (${popular.length})`);
+        }
+
+        // Search with Enter key
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchSpots();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surf News - Surf & Ski</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="surf-page">
+    <header class="compact surf-header">
+        <h1>Surf News</h1>
+        <p>Latest updates from the lineup</p>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="surf.html">All Spots</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="news-list" id="newsList">
+            <!-- News will be loaded by JavaScript -->
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Surf & Ski - All rights reserved</p>
+    </footer>
+
+    <script src="data_surf_news.js"></script>
+    <script src="data_surf_resort.js"></script>
+    <script>
+        function formatDate(dateString) {
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return new Date(dateString).toLocaleDateString('en-US', options);
+        }
+
+        function displayNewsList() {
+            const newsListSection = document.getElementById('newsList');
+
+            if (surfNews.length === 0) {
+                newsListSection.innerHTML = '<p style="text-align: center; color: #666;">No news available</p>';
+                return;
+            }
+
+            let html = '';
+
+            // Featured news first
+            const featuredNews = surfNews.filter(n => n.featured);
+            if (featuredNews.length > 0) {
+                featuredNews.forEach(news => {
+                    html += `
+                        <article class="news-card featured surf-news" onclick="showArticle('${news.id}')">
+                            <span class="news-badge surf">Featured</span>
+                            <span class="news-category surf">${news.category}</span>
+                            <h2>${news.title}</h2>
+                            <p class="news-subtitle">${news.subtitle}</p>
+                            <p class="news-summary">${news.summary}</p>
+                            <div class="news-meta">
+                                <span class="news-date">${formatDate(news.date)}</span>
+                                <span class="news-author">By ${news.author}</span>
+                            </div>
+                            <span class="read-more surf">Read full article →</span>
+                        </article>
+                    `;
+                });
+            }
+
+            // Other news
+            const otherNews = surfNews.filter(n => !n.featured);
+            if (otherNews.length > 0) {
+                html += '<div class="news-grid">';
+                otherNews.forEach(news => {
+                    html += `
+                        <article class="news-card surf-news" onclick="showArticle('${news.id}')">
+                            <span class="news-category surf">${news.category}</span>
+                            <h3>${news.title}</h3>
+                            <p class="news-subtitle">${news.subtitle}</p>
+                            <p class="news-summary">${news.summary}</p>
+                            <div class="news-meta">
+                                <span class="news-date">${formatDate(news.date)}</span>
+                            </div>
+                            <span class="read-more surf">Read more →</span>
+                        </article>
+                    `;
+                });
+                html += '</div>';
+            }
+
+            newsListSection.innerHTML = html;
+        }
+
+        function showArticle(articleId) {
+            const news = getSurfNewsById(articleId);
+            if (!news) return;
+
+            const newsListSection = document.getElementById('newsList');
+
+            // Build related spots section
+            let relatedHtml = '';
+            if (news.relatedSpots && news.relatedSpots.length > 0) {
+                relatedHtml = '<div class="related-resorts surf"><h3>Related Surf Spots</h3><div class="related-grid">';
+                news.relatedSpots.forEach(spotId => {
+                    const spot = getSpotById(spotId);
+                    if (spot) {
+                        relatedHtml += `
+                            <a href="spot.html?id=${spot.id}" class="related-resort-card surf">
+                                <strong>${spot.name}</strong>
+                                <span>${spot.region}, ${spot.country}</span>
+                            </a>
+                        `;
+                    }
+                });
+                relatedHtml += '</div></div>';
+            }
+
+            newsListSection.innerHTML = `
+                <article class="news-article surf">
+                    <button class="btn-back-article surf" onclick="displayNewsList()">← Back to all news</button>
+                    <header class="article-header">
+                        <span class="news-category surf">${news.category}</span>
+                        <h1>${news.title}</h1>
+                        <p class="article-subtitle">${news.subtitle}</p>
+                        <div class="news-meta">
+                            <span class="news-date">${formatDate(news.date)}</span>
+                            <span class="news-author">By ${news.author}</span>
+                        </div>
+                    </header>
+                    <div class="article-content">
+                        ${news.content}
+                    </div>
+                    ${relatedHtml}
+                </article>
+            `;
+
+            window.scrollTo(0, 0);
+        }
+
+        // Initialize
+        displayNewsList();
+    </script>
+</body>
+</html>
