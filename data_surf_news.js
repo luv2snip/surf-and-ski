@@ -32,26 +32,30 @@ const surfNews = [
     },
    {
     id: "surfers-rescue-santa-cruz-2026",
-    title: "Des surfeurs sauvent 6 personnes dont 4 enfants à Santa Cruz",
-    subtitle: "Steamer Lane : quand les surfeurs deviennent sauveteurs",
-    date: "2026-02-06",
-    author: "Surf & Ski Team",
-    category: "News",
-    featured: true,
-    image: null,
-    summary: "Le 6 février 2026, près du célèbre spot de Steamer Lane à Santa Cruz en Californie, des surfeurs dont le professionnel Darryl 'Flea' Virostko ont secouru 6 personnes après le chavirement de leur bateau dans de grosses vagues.",
-    content: `
-        <p>Le 6 février 2026, les eaux agitées de Santa Cruz en Californie ont été le théâtre d'un sauvetage héroïque. Un petit bateau à moteur transportant 6 personnes — 2 adultes et 4 enfants — a chaviré dans de grosses vagues à proximité du célèbre spot de surf de Steamer Lane.</p>
-        <h3>Le chavirement</h3>
-        <p>Le bateau circulait rapidement lorsqu'il a été renversé par une vague, projetant tous ses passagers dans l'océan Pacifique. La situation s'est immédiatement révélée critique : certaines des victimes ne portaient pas de gilet de sauvetage, rendant leur survie particulièrement précaire dans des conditions de houle difficiles.</p>
-        <h3>Les surfeurs à la rescousse</h3>
-        <p>Fort heureusement, plusieurs surfeurs se trouvaient dans l'eau au moment du drame. Parmi eux, le surfeur professionnel californien Darryl "Flea" Virostko, légende du big wave surf, ainsi que plusieurs adolescents. Sans hésiter, ils ont nagé en direction des victimes, utilisant leurs planches de surf comme bouées de fortune pour maintenir les passagers à la surface en attendant l'arrivée des secours.</p>
-        <h3>Les secours et le bilan</h3>
-        <p>Les pompiers, sauveteurs et patrouilles du port sont intervenus quelques minutes après l'alerte. Les six naufragés ont été pris en charge et transportés à l'hôpital. Tous sont en cours de rétablissement.</p>
-        <h3>Hommage aux surfeurs</h3>
-        <p>Les autorités locales ont tenu à saluer publiquement le courage et la réactivité des surfeurs, soulignant que leur intervention rapide a très probablement évité une tragédie. Un bel exemple de solidarité dans la communauté du surf.</p>
-    `,
-    relatedSpots: ["santa-cruz", "steamer-lane"]
+title: "Surfers rescue 6 people including 4 children in Santa Cruz",
+subtitle: "Steamer Lane: when surfers become lifesavers",
+date: "2026-02-06",
+author: "Surf & Ski Team",
+category: "News",
+featured: true,
+image: null,
+summary: "On February 6, 2026, near the famous surf spot Steamer Lane in Santa Cruz, California, several surfers including professional Darryl 'Flea' Virostko rescued six people after their boat capsized in large waves.",
+content: `
+    <p>On February 6, 2026, the rough waters of Santa Cruz, California became the scene of a heroic rescue. A small motorboat carrying six people — two adults and four children — capsized in large waves near the famous surf spot of Steamer Lane.</p>
+
+    <h3>The accident</h3>
+    <p>The boat was moving quickly when a wave flipped it over, throwing all the passengers into the Pacific Ocean. The situation immediately became dangerous: some of the victims were not wearing life jackets, which made their survival more difficult in the strong waves.</p>
+
+    <h3>Surfers to the rescue</h3>
+    <p>Fortunately, several surfers were already in the water at the time of the accident. Among them was professional Californian surfer Darryl "Flea" Virostko, a legend of big wave surfing, as well as several teenagers. Without hesitation, they paddled toward the victims and used their surfboards as floating support to keep the passengers above the water while waiting for rescue teams to arrive.</p>
+
+    <h3>Rescue teams and outcome</h3>
+    <p>Firefighters, lifeguards, and harbor patrol teams arrived a few minutes after the alert. The six people were rescued and taken to the hospital. All of them are currently recovering.</p>
+
+    <h3>Tribute to the surfers</h3>
+    <p>Local authorities publicly praised the courage and quick reaction of the surfers, saying that their fast action most likely prevented a tragedy. It is a great example of solidarity within the surf community.</p>
+`,
+relatedSpots: ["santa-cruz", "steamer-lane"]
 },
     {
         id: "wsl-2026-season-preview",
