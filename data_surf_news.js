@@ -32,30 +32,26 @@ const surfNews = [
     },
    {
     id: "surfers-rescue-santa-cruz-2026",
-title: "Surfers rescue 6 people including 4 children in Santa Cruz",
-subtitle: "Steamer Lane: when surfers become lifesavers",
-date: "2026-02-06",
-author: "Surf & Ski Team",
-category: "News",
-featured: true,
-image: null,
-summary: "On February 6, 2026, near the famous surf spot Steamer Lane in Santa Cruz, California, several surfers including professional Darryl 'Flea' Virostko rescued six people after their boat capsized in large waves.",
-content: `
-    <p>On February 6, 2026, the rough waters of Santa Cruz, California became the scene of a heroic rescue. A small motorboat carrying six people — two adults and four children — capsized in large waves near the famous surf spot of Steamer Lane.</p>
-
-    <h3>The accident</h3>
-    <p>The boat was moving quickly when a wave flipped it over, throwing all the passengers into the Pacific Ocean. The situation immediately became dangerous: some of the victims were not wearing life jackets, which made their survival more difficult in the strong waves.</p>
-
-    <h3>Surfers to the rescue</h3>
-    <p>Fortunately, several surfers were already in the water at the time of the accident. Among them was professional Californian surfer Darryl "Flea" Virostko, a legend of big wave surfing, as well as several teenagers. Without hesitation, they paddled toward the victims and used their surfboards as floating support to keep the passengers above the water while waiting for rescue teams to arrive.</p>
-
-    <h3>Rescue teams and outcome</h3>
-    <p>Firefighters, lifeguards, and harbor patrol teams arrived a few minutes after the alert. The six people were rescued and taken to the hospital. All of them are currently recovering.</p>
-
-    <h3>Tribute to the surfers</h3>
-    <p>Local authorities publicly praised the courage and quick reaction of the surfers, saying that their fast action most likely prevented a tragedy. It is a great example of solidarity within the surf community.</p>
-`,
-relatedSpots: ["santa-cruz", "steamer-lane"]
+    title: "Surfers Save 6 People Including 4 Children in Santa Cruz",
+    subtitle: "Steamer Lane: When surfers become lifesavers",
+    date: "2026-02-06",
+    author: "Surf & Ski Team",
+    category: "News",
+    featured: true,
+    image: null,
+    summary: "On February 6, 2026, near the famous Steamer Lane break in Santa Cruz, California, surfers including professional Darryl 'Flea' Virostko rescued 6 people after their motorboat capsized in large waves.",
+    content: `
+        <p>On February 6, 2026, the rough waters off Santa Cruz, California, became the scene of a heroic rescue. A small motorboat carrying 6 people — 2 adults and 4 children — capsized in large waves near the iconic surf spot of Steamer Lane.</p>
+        <h3>The Capsize</h3>
+        <p>The boat was moving at speed when it was overturned by a wave, throwing all passengers into the Pacific Ocean. The situation immediately turned critical: some of the victims were not wearing life jackets, making their survival particularly precarious in the challenging swell conditions.</p>
+        <h3>Surfers to the Rescue</h3>
+        <p>Fortunately, several surfers were in the water at the time of the incident. Among them was California big wave legend Darryl "Flea" Virostko, along with several teenage surfers. Without hesitation, they paddled toward the victims, using their surfboards as makeshift flotation devices to keep the passengers above water until emergency services could arrive.</p>
+        <h3>Emergency Response and Outcome</h3>
+        <p>Firefighters, lifeguards, and harbor patrol units responded within minutes of the alert. All six victims were treated on scene and transported to the hospital. Everyone is reported to be recovering.</p>
+        <h3>Tribute to the Surfers</h3>
+        <p>Local authorities publicly praised the courage and quick thinking of the surfers, emphasizing that their swift response most likely prevented a tragedy. A powerful reminder of the solidarity that defines the surfing community.</p>
+    `,
+    relatedSpots: ["santa-cruz", "steamer-lane"]
 },
     {
         id: "wsl-2026-season-preview",
