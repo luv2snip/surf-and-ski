@@ -4,6 +4,53 @@
 
 const surfNews = [
     {
+        id: "landes-surf-fever-2026",
+        title: "In Les Landes, Surf Fever",
+        subtitle: "The entire Landes coastline sits at the epicentre of a wave of enthusiasm",
+        date: "2026-03-17",
+        author: "Hélier",
+        category: "News",
+        featured: true,
+        image: null,
+        summary: "Since the Covid-19 pandemic, a massive influx of new surfers has transformed the Landes coastline into full-fledged surf destinations, fuelling an economic resurgence but also generating new conflicts.",
+        content: `
+            <p>On Santocha beach in Capbreton, on a late July morning, the water looks like a gridlocked boulevard. Over 200 surfers are waiting for the next wave. Raymond Deroo, 32, who has worked the Terramar beach cabin for five years, watches the scene without surprise: this year, he's never seen so many people in the water. Out there, waves get snaked, shoulders get bumped. Accidents happen regularly. The locals grumble and retreat to less accessible breaks. But those same tourists are what keeps the place alive.</p>
+
+            <p>Capbreton, Hossegor, Seignosse, Soustons, Moliets-et-Maâ — the entire Landes coastline sits at the epicentre of this wave of enthusiasm. Since the Covid-19 pandemic, a massive influx of new surfers has transformed these seaside towns into full-fledged surf destinations, driven by a craze that has spread well beyond the usual crowd. The French Surf Federation issued 65,000 surf passports through its accredited schools in 2024 — up 20% compared to 2014. And those figures only tell part of the story: licensed surfers remain a small fraction of the people actually in the water.</p>
+
+            <p>The boom is drawing a higher-income demographic, attracted as much by the lifestyle as by the sport itself. It is fuelling an economic resurgence across the region. But it is also generating new conflicts — in the water, on the beaches, in the towns themselves — with regulation still struggling to keep pace.</p>
+        `,
+        relatedSpots: ["capbreton", "hossegor", "seignosse"]
+    },
+    {
+        id: "adrena-red-sea-wave-pool-2026",
+        title: "At the Edge of the World, a Wave of a New Kind",
+        subtitle: "Matt Etxebarne and crew test the Endless Surf wave pool in Saudi Arabia",
+        date: "2026-03-17",
+        author: "Hélier",
+        category: "News",
+        featured: true,
+        image: null,
+        summary: "For this session unlike any other, Matt Etxebarne flew out with a carefully chosen crew to Adrena, an ambitious artificial wave installation in Saudi Arabia powered by Endless Surf technology.",
+        content: `
+            <p>For this session unlike any other, Matt Etxebarne flew out with a carefully chosen crew: Louis Marchiset on longboard, Cam Richards and Victor Bernardo on surfboards. Their destination: Adrena, an installation as unexpected as it is ambitious, nestled at the heart of the Red Sea Global project, just a few kilometres from the Red Sea, in Saudi Arabia. On paper, the place looks nothing like a traditional surf spot. In reality, it might just be where the future of riding is taking shape.</p>
+
+            <p>The technology behind it all belongs to Endless Surf — a new generation of artificial waves, designed not as a simple aquatic attraction, but as a genuine performance platform for high-level surfers. For several days, the team had full freedom to explore, test, and push every parameter — wave height, frequency, bottom configuration — with the kind of consistency the ocean only rarely delivers.</p>
+
+            <h3>Surfing Mode</h3>
+            <p>In surfing mode, Cam and Victor went after raw sensation: walls, sections, and aerial opportunities that the system generates with an almost unsettling regularity. No waiting, no unpredictable swell, no wind gusts — just the wave, on repeat, on demand. The kind of setup that lets you refine your surfing to the point of obsession.</p>
+
+            <h3>Longboard Mode</h3>
+            <p>Louis approached the experience differently. On a longboard, every wave becomes a conversation. And this machine, it turns out, has a lot to say: long, open shoulders, a pace that invites noseriding, hang tens, and the kind of smooth transitions usually reserved for the world's most coveted point breaks. The pool format changes the rules of the game, but not what matters most — the feeling is unmistakably real.</p>
+
+            <h3>Pushing the Limits</h3>
+            <p>The stated goal of the trip was simple in its wording, demanding in its execution: push the limits of each discipline. Understand what an artificial wave can offer beyond the general public's experience. And the answer, it seems, exceeds all expectations.</p>
+
+            <p>The boom is drawing a higher-income demographic, attracted as much by the lifestyle as by the sport itself. It is fuelling an economic resurgence across the region. But it is also generating new conflicts — in the water, on the beaches, in the towns themselves — with regulation still struggling to keep pace.</p>
+        `,
+        relatedSpots: ["adrena", "red-sea"]
+    },
+    {
         id: "epic-swell-portugal-2026",
         title: "Epic Swell Hits Portugal's Coast",
         subtitle: "Nazare and Peniche light up with perfect conditions",
