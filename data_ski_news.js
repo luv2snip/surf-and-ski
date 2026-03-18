@@ -40,8 +40,6 @@ His last race on French soil was unfortunately cancelled, as heavy snowfall made
             <p>However, the damage was partly contained thanks to the Epic Pass model. By selling annual passes months before the season begins, Vail locks in roughly 75% of its visits in advance. As a result, lift revenue only declined by 3.6%, far less than the drop in actual visitors. The company also benefited from its geographic diversification across 42 resorts worldwide, as the Northeast enjoyed one of its best seasons on record while the West struggled.</p>
 
             <p>The bigger picture, though, is harder to ignore. California ski resorts are now facing a historic heatwave this week, with forecasters warning that most slopes below 8,000 feet could lose all remaining snow before April. Vail has invested over $100 million in snowmaking infrastructure since 2015, but the question the industry can no longer avoid is whether artificial snow can be a long term solution, or just a temporary fix for a deepening climate problem.</p>
-
-            <p><em>(Source: Vail Resorts Q2 FY2026 earnings release, March 9, 2026, powder.com)</em></p>
         `,
         relatedResorts: []
     }
