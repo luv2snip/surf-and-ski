@@ -20,9 +20,12 @@
     </header>
 
     <main>
-        <div class="page-hero">
-            <h2>Surf News</h2>
-            <p>Latest updates from the lineup</p>
+        <div class="page-hero" style="background-image: url('bg-wave.webp');">
+            <div class="page-hero-overlay"></div>
+            <div class="page-hero-content">
+                <h2>Surf News</h2>
+                <p>Latest updates from the lineup</p>
+            </div>
         </div>
 
         <section class="news-list" id="newsList"></section>
@@ -118,8 +121,8 @@
             }
 
             newsListSection.innerHTML = `
+                <button class="btn-back-article surf" onclick="displayNewsList()">← Back to all news</button>
                 <article class="news-article surf">
-                    <button class="btn-back-article surf" onclick="displayNewsList()">← Back to all news</button>
                     <header class="article-header">
                         <span class="news-category surf">${news.category}</span>
                         <h1>${news.title}</h1>

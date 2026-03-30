@@ -107,18 +107,11 @@ body.home-page {
 
 /* Ski page - cool tones */
 body.ski-page {
-    background:
-        radial-gradient(ellipse 80% 50% at 30% 0%, rgba(99, 102, 241, 0.05) 0%, transparent 60%),
-        radial-gradient(ellipse 50% 40% at 90% 90%, rgba(148, 163, 184, 0.08) 0%, transparent 50%),
-        var(--neutral-50);
+    background: var(--ski-900) !important;
 }
 
-/* Surf page - warm ocean tones */
 body.surf-page {
-    background:
-        radial-gradient(ellipse 80% 50% at 20% 0%, rgba(59, 130, 246, 0.07) 0%, transparent 60%),
-        radial-gradient(ellipse 50% 40% at 90% 80%, rgba(245, 158, 11, 0.05) 0%, transparent 50%),
-        var(--neutral-50);
+    background: var(--surf-900) !important;
 }
 
 /* Gear page */
@@ -404,11 +397,39 @@ header:hover .header-search-btn {
    ======================================== */
 
 .page-hero {
-    padding: 4rem 2rem 3rem;
+    position: relative;
+    width: 100%;
+    height: 45vh;
+    min-height: 280px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    max-width: 680px;
-    margin: 0 auto;
     animation: fadeUp 0.6s var(--ease) both;
+}
+
+.page-hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+.ski-page .page-hero-overlay {
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0.4) 0%, rgba(15, 23, 42, 0.7) 60%, var(--ski-900) 100%);
+}
+
+.surf-page .page-hero-overlay {
+    background: linear-gradient(180deg, rgba(30, 58, 95, 0.4) 0%, rgba(30, 58, 95, 0.7) 60%, var(--surf-900) 100%);
+}
+
+.page-hero-content {
+    position: relative;
+    z-index: 10;
+    max-width: 680px;
+    padding: 0 2rem;
 }
 
 .page-hero h2 {
@@ -416,27 +437,14 @@ header:hover .header-search-btn {
     font-weight: 800;
     letter-spacing: -0.04em;
     line-height: 1.15;
-    color: var(--neutral-900);
+    color: var(--white);
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
     margin-bottom: 0.75rem;
-}
-
-.surf-page .page-hero h2 {
-    background: linear-gradient(135deg, var(--neutral-900) 0%, var(--surf-600) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.ski-page .page-hero h2 {
-    background: linear-gradient(135deg, var(--neutral-900) 0%, var(--ski-accent) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
 }
 
 .page-hero p {
     font-size: 1.125rem;
-    color: var(--neutral-500);
+    color: rgba(255, 255, 255, 0.7);
     line-height: 1.6;
     max-width: 480px;
     margin: 0 auto;
@@ -1048,6 +1056,7 @@ a.station-card:hover .card-arrow {
 .resort-detail {
     max-width: 880px;
     margin: 0 auto;
+    padding: 2rem 2rem 4rem;
     animation: fadeUp 0.5s var(--ease) both;
 }
 
@@ -1235,6 +1244,7 @@ a.station-card:hover .card-arrow {
 .news-list {
     max-width: 880px;
     margin: 0 auto;
+    padding: 2rem 2rem 4rem;
     animation: fadeUp 0.5s var(--ease) both;
 }
 
@@ -1372,20 +1382,24 @@ a.station-card:hover .card-arrow {
 }
 
 .btn-back-article {
-    background: none;
-    border: none;
-    color: var(--neutral-500);
-    font-size: 0.875rem;
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-full);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9375rem;
     font-family: var(--font);
-    font-weight: 500;
+    font-weight: 600;
     cursor: pointer;
-    padding: 0.375rem 0;
+    padding: 0.625rem 1.5rem;
     margin-bottom: 1.5rem;
-    transition: color var(--duration) var(--ease);
+    transition: all var(--duration) var(--ease);
 }
 
 .btn-back-article:hover {
-    color: var(--neutral-900);
+    color: var(--white);
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
     text-decoration: none;
 }
 
@@ -1914,7 +1928,7 @@ a.station-card:hover .card-arrow {
    ======================================== */
 
 .surf-page {
-    background: var(--white);
+    background: var(--surf-900) !important;
 }
 
 /* Spots list */
@@ -2047,6 +2061,7 @@ a.station-card:hover .card-arrow {
 .spot-detail {
     max-width: 880px;
     margin: 0 auto;
+    padding: 2rem 2rem 4rem;
     animation: fadeUp 0.5s var(--ease) both;
 }
 
@@ -2154,7 +2169,7 @@ a.station-card:hover .card-arrow {
    ======================================== */
 
 .ski-page {
-    background: var(--white);
+    background: var(--ski-900) !important;
 }
 
 /* ========================================
@@ -2670,6 +2685,231 @@ a.station-card:hover .card-arrow {
     color: rgba(255, 255, 255, 0.5);
 }
 
+/* Resort/Spot detail cards — dark theme */
+.ski-page .resort-card,
+.surf-page .resort-card {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.ski-page .resort-card h3,
+.surf-page .resort-card h3 {
+    color: var(--white);
+}
+
+.ski-page .stat-row,
+.surf-page .stat-row {
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+.ski-page .stat-label,
+.surf-page .stat-label {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.ski-page .stat-value,
+.surf-page .stat-value {
+    color: var(--white);
+}
+
+.ski-page .stat-row.highlight,
+.surf-page .stat-row.highlight {
+    background: rgba(99, 102, 241, 0.15);
+}
+
+.surf-page .stat-row.highlight {
+    background: rgba(59, 130, 246, 0.15);
+}
+
+.ski-page .stat-row.highlight .stat-value,
+.surf-page .stat-row.highlight .stat-value {
+    color: var(--white);
+}
+
+.ski-page .badge,
+.surf-page .badge {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.ski-page .btn-primary,
+.surf-page .btn-primary {
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--white);
+}
+
+.ski-page .btn-primary:hover,
+.surf-page .btn-primary:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.ski-page .btn-secondary,
+.surf-page .btn-secondary {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.ski-page .btn-secondary:hover,
+.surf-page .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--white);
+}
+
+.ski-page .resort-not-found,
+.surf-page .resort-not-found {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.ski-page .resort-not-found h2,
+.surf-page .resort-not-found h2 {
+    color: var(--white);
+}
+
+.surf-page .spot-description p {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* News cards — dark theme */
+.ski-page .news-card,
+.surf-page .news-card {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.ski-page .news-card:hover,
+.surf-page .news-card:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.ski-page .news-card.featured,
+.surf-page .news-card.featured {
+    background: rgba(255, 255, 255, 0.08);
+    border-left-color: var(--ski-accent);
+}
+
+.surf-page .news-card.featured {
+    border-left-color: var(--surf-400);
+}
+
+.ski-page .news-card h2,
+.ski-page .news-card h3,
+.surf-page .news-card h2,
+.surf-page .news-card h3 {
+    color: var(--white);
+}
+
+.ski-page .news-subtitle,
+.surf-page .news-subtitle {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.ski-page .news-summary,
+.surf-page .news-summary {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.ski-page .news-meta,
+.surf-page .news-meta {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.ski-page .read-more,
+.surf-page .read-more {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.ski-page .news-badge,
+.surf-page .news-badge {
+    background: var(--ski-accent);
+}
+
+.surf-page .news-badge {
+    background: var(--surf-500);
+}
+
+/* News article — dark theme */
+.ski-page .news-article,
+.surf-page .news-article {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.ski-page .news-article .article-header h1,
+.surf-page .news-article .article-header h1 {
+    color: var(--white) !important;
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    -webkit-text-fill-color: unset !important;
+}
+
+.ski-page .article-subtitle,
+.surf-page .article-subtitle {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.ski-page .article-header,
+.surf-page .article-header {
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+.ski-page .article-content,
+.surf-page .article-content {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.ski-page .article-content h3,
+.surf-page .article-content h3 {
+    color: var(--white);
+}
+
+.ski-page .btn-back-article,
+.surf-page .btn-back-article {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.ski-page .btn-back-article:hover,
+.surf-page .btn-back-article:hover {
+    color: var(--white);
+}
+
+/* Related resorts/spots — dark theme */
+.ski-page .related-resorts,
+.surf-page .related-resorts {
+    border-top-color: rgba(255, 255, 255, 0.08);
+}
+
+.ski-page .related-resorts h3,
+.surf-page .related-resorts h3 {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.ski-page .related-resort-card,
+.surf-page .related-resort-card {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.ski-page .related-resort-card:hover,
+.surf-page .related-resort-card:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: none;
+}
+
+.ski-page .related-resort-card strong,
+.surf-page .related-resort-card strong {
+    color: var(--white);
+}
+
+.ski-page .related-resort-card span,
+.surf-page .related-resort-card span {
+    color: rgba(255, 255, 255, 0.5);
+}
+
 /* Footer on dark pages */
 .ski-page footer,
 .surf-page footer {
@@ -3019,7 +3259,8 @@ a.station-card:hover .card-arrow {
     }
 
     .page-hero {
-        padding: 2.5rem 1rem 2rem;
+        height: 35vh;
+        min-height: 220px;
     }
 
     .page-hero h2 {

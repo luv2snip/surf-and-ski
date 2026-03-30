@@ -20,9 +20,12 @@
     </header>
 
     <main>
-        <div class="page-hero">
-            <h2>Ski News</h2>
-            <p>Latest updates from the slopes</p>
+        <div class="page-hero" style="background-image: url('bg-mountain.webp');">
+            <div class="page-hero-overlay"></div>
+            <div class="page-hero-content">
+                <h2>Ski News</h2>
+                <p>Latest updates from the slopes</p>
+            </div>
         </div>
 
         <section class="news-list" id="newsList"></section>
@@ -118,8 +121,8 @@
             }
 
             newsListSection.innerHTML = `
+                <button class="btn-back-article" onclick="displayNewsList()">← Back to all news</button>
                 <article class="news-article">
-                    <button class="btn-back-article" onclick="displayNewsList()">← Back to all news</button>
                     <header class="article-header">
                         <span class="news-category">${news.category}</span>
                         <h1>${news.title}</h1>
