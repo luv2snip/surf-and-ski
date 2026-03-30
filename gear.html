@@ -1,15 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gear Finder - Peak2Wave</title>
+    <meta name="description" content="Find the perfect ski, snowboard, or surf gear. Personalized recommendations based on your level, budget, and destination.">
+    <meta name="theme-color" content="#171717">
+    <meta property="og:title" content="Gear Finder - Peak2Wave">
+    <meta property="og:description" content="Personalized gear recommendations for ski, snowboard, and surf based on your level and destination.">
+    <meta property="og:image" content="https://luv2snip.github.io/surf-and-ski/bg-gear.webp">
+    <meta property="og:url" content="https://luv2snip.github.io/surf-and-ski/gear.html">
+    <link rel="preload" as="image" type="image/webp" href="bg-gear.webp">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="gear-page">
-    <header>
+    <header role="banner">
         <h1><a href="index.html" style="text-decoration:none;color:inherit">Peak2Wave</a></h1>
-        <nav>
+        <nav aria-label="Main navigation">
             <a href="index.html">Home</a>
             <a href="surf.html">Surf</a>
             <a href="ski.html">Ski</a>
@@ -17,7 +26,7 @@
     </header>
 
     <main>
-        <div class="gear-hero" id="gearHero" style="background-image: url('bg-gear.png');">
+        <div class="gear-hero" id="gearHero" style="background-image: url('bg-gear.webp');">
             <div class="gear-hero-overlay"></div>
             <div class="gear-hero-content" id="heroContent">
                 <!-- Step 1: Activity -->

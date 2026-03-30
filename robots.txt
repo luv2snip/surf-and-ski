@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://luv2snip.github.io/surf-and-ski/sitemap.xml

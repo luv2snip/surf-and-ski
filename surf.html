@@ -1,26 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Surf - Peak2Wave</title>
+    <title>Surf Spots - Peak2Wave</title>
+    <meta name="description" content="Find the best surf spots worldwide. Big wave alerts, beginner-friendly breaks, water temps, and real-time conditions.">
+    <meta name="theme-color" content="#1e3a5f">
+    <meta property="og:title" content="Surf Spots - Peak2Wave">
+    <meta property="og:description" content="Find the best surf spots worldwide with real-time conditions and wave forecasts.">
+    <meta property="og:image" content="https://luv2snip.github.io/surf-and-ski/bg-wave.webp">
+    <meta property="og:url" content="https://luv2snip.github.io/surf-and-ski/surf.html">
+    <link rel="preload" as="image" type="image/webp" href="bg-wave.webp">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="surf-page">
-    <header>
+    <header role="banner">
         <h1><a href="index.html" style="text-decoration:none;color:inherit">Peak2Wave</a></h1>
         <div class="header-right">
-            <nav>
+            <nav aria-label="Main navigation">
                 <a href="index.html">Home</a>
                 <a href="ski.html">Ski</a>
                 <a href="gear.html">Gear</a>
             </nav>
-            <button class="header-search-btn" onclick="toggleSearch()" title="Search (/)">🔍</button>
+            <button class="header-search-btn" onclick="toggleSearch()" title="Search (/)" aria-label="Toggle search">🔍</button>
         </div>
     </header>
 
     <main>
-        <div class="page-bg-hero" style="background-image: url('bg-wave.jpg');">
+        <div class="page-bg-hero" style="background-image: url('bg-wave.webp');">
             <div class="hero-overlay-layout">
                 <!-- Default: navigation buttons -->
                 <div class="hero-view active" id="heroNav">
@@ -59,7 +68,7 @@
                     <div class="hero-search-content">
                         <h2>Find your perfect wave</h2>
                         <div class="hero-search-bar">
-                            <input type="text" id="searchInput" placeholder="Spot name, region, country...">
+                            <input type="text" id="searchInput" placeholder="Spot name, region, country..." aria-label="Search surf spots">
                             <button class="hero-search-submit" onclick="searchSpots()">Search</button>
                         </div>
                         <a href="#" class="hero-back-btn" onclick="backToNav(); return false;">← Back</a>
