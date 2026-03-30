@@ -171,8 +171,11 @@
         }
 
         function goToStep(stepNum) {
-            document.querySelectorAll('.hero-wizard-step').forEach(step => step.classList.remove('active'));
-            document.getElementById(`heroStep${stepNum}`).classList.add('active');
+            const current = document.querySelector('.hero-wizard-step.active');
+            const next = document.getElementById(`heroStep${stepNum}`);
+            if (current === next) return;
+            if (current) current.classList.remove('active');
+            setTimeout(() => next.classList.add('active'), 250);
         }
 
         function showResults() {

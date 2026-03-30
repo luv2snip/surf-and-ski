@@ -1557,12 +1557,20 @@ a.station-card:hover .card-arrow {
 
 /* Hero wizard steps */
 .hero-wizard-step {
-    display: none;
-    animation: fadeUp 0.4s var(--ease);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.35s var(--ease), visibility 0.35s;
+    height: 0;
+    overflow: hidden;
+    pointer-events: none;
 }
 
 .hero-wizard-step.active {
-    display: block;
+    opacity: 1;
+    visibility: visible;
+    height: auto;
+    overflow: visible;
+    pointer-events: auto;
 }
 
 .hero-back-btn {
@@ -2704,20 +2712,26 @@ a.station-card:hover .card-arrow {
 
 /* Hero view switching (nav vs search) */
 .hero-view {
-    display: none;
-    width: 100%;
-    height: 100%;
-    animation: fadeUp 0.4s var(--ease);
-}
-
-.hero-view.active {
+    position: absolute;
+    inset: 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 80px calc(4vw + 85px) 2rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.35s var(--ease), visibility 0.35s;
+    pointer-events: none;
+}
+
+.hero-view.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
 }
 
 /* Search view fills center */
-.hero-view#heroSearch.active {
+.hero-view#heroSearch {
     justify-content: center;
 }
 
@@ -2889,6 +2903,10 @@ a.station-card:hover .card-arrow {
         flex-direction: column;
         justify-content: center;
         gap: 1.5rem;
+        padding: 80px 1.25rem 2rem;
+    }
+
+    .hero-view {
         padding: 80px 1.25rem 2rem;
     }
 

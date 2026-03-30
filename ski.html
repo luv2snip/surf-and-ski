@@ -91,13 +91,16 @@
     <script src="data_ski_resort.js"></script>
     <script>
         function switchHeroView(viewId) {
-            document.querySelectorAll('.hero-view').forEach(v => v.classList.remove('active'));
-            document.getElementById(viewId).classList.add('active');
+            const current = document.querySelector('.hero-view.active');
+            const next = document.getElementById(viewId);
+            if (current === next) return;
+            if (current) current.classList.remove('active');
+            setTimeout(() => next.classList.add('active'), 250);
         }
 
         function showHeroSearch() {
             switchHeroView('heroSearch');
-            setTimeout(() => document.getElementById('searchInput').focus(), 300);
+            setTimeout(() => document.getElementById('searchInput').focus(), 500);
         }
 
         function backToNav() {
