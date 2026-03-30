@@ -6,39 +6,61 @@
     <title>Peak2Wave - Your passion, our expertise</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-    <header>
-        <h1>Peak2Wave</h1>
-        <p>Your passion, our expertise</p>
-    </header>
+<body class="home-page">
 
-    <main>
-        <section class="hero">
-            <h2>Welcome to Surf & Ski</h2>
-            <p>Discover the best destinations and gear for your favorite activities</p>
+    <!-- Snap scroll container -->
+    <div class="snap-container">
+
+        <!-- Section 1: Hero / Intro -->
+        <section class="snap-section section-hero" style="background-image: url('bg-hero.png');">
+            <div class="section-overlay section-overlay--hero"></div>
+            <div class="section-content">
+                <h2>From peaks to waves,<br>find your next adventure</h2>
+                <p>Discover the best destinations and gear for surf and ski, curated by enthusiasts.</p>
+                <div class="scroll-hint">
+                    <span>Scroll to explore</span>
+                    <div class="scroll-arrow"></div>
+                </div>
+            </div>
         </section>
 
-        <section class="activities">
-            <a href="surf.html" class="activity-card surf-theme">
-                <h3>Surf</h3>
-                <p>Discover the best surf spots, tips for beginners and experts, and all the gear you need to ride the waves.</p>
-            </a>
-
-            <a href="ski.html" class="activity-card ski-theme">
-                <h3>Ski</h3>
-                <p>Explore the most beautiful ski resorts, learn advanced techniques, and find the right equipment for your level.</p>
-            </a>
-
-            <a href="gear.html" class="activity-card">
-                <h3>Gear</h3>
-                <p>Buying guides, comparisons and tips to choose the best surf and ski equipment for your needs.</p>
-            </a>
+        <!-- Section 2: Ski / Peaks -->
+        <section class="snap-section section-ski" style="background-image: url('bg-mountain.jpg');">
+            <div class="section-overlay section-overlay--ski"></div>
+            <div class="section-content">
+                <span class="section-tag">Peaks</span>
+                <h2>Chase the powder</h2>
+                <p>Explore the best ski resorts with live snow reports, trail maps, and insider tips.</p>
+                <a href="ski.html" class="section-cta section-cta--ski">
+                    Discover resorts
+                    <span class="cta-arrow">→</span>
+                </a>
+            </div>
         </section>
-    </main>
 
-    <footer>
-        <p>&copy; 2026 Peak2Wave - All rights reserved</p>
-        <p class="instagram">Follow us: <a href="https://instagram.com/peak.2.wave" target="_blank">@peak.2.wave</a></p>
-    </footer>
+        <!-- Section 3: Surf / Waves -->
+        <section class="snap-section section-surf" style="background-image: url('bg-wave.jpg');">
+            <div class="section-overlay section-overlay--surf"></div>
+            <div class="section-content">
+                <span class="section-tag">Waves</span>
+                <h2>Ride the swell</h2>
+                <p>Find perfect waves worldwide with real-time conditions, forecasts, and local knowledge.</p>
+                <a href="surf.html" class="section-cta section-cta--surf">
+                    Discover spots
+                    <span class="cta-arrow">→</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Section 4: Credits (hidden, hover to reveal) -->
+        <section class="snap-section snap-credits">
+            <footer class="snap-footer">
+                <p>&copy; 2026 Peak2Wave - All rights reserved</p>
+                <p class="instagram">Follow us: <a href="https://instagram.com/peak.2.wave" target="_blank">@peak.2.wave</a></p>
+            </footer>
+        </section>
+
+    </div>
+
 </body>
 </html>

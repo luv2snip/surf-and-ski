@@ -7,9 +7,8 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="surf-page">
-    <header class="compact surf-header">
-        <h1>Surf News</h1>
-        <p>Latest updates from the lineup</p>
+    <header>
+        <h1><a href="index.html" style="text-decoration:none;color:inherit">Peak2Wave</a></h1>
         <nav>
             <a href="index.html">Home</a>
             <a href="surf.html">All Spots</a>
@@ -17,9 +16,12 @@
     </header>
 
     <main>
-        <section class="news-list" id="newsList">
-            <!-- News will be loaded by JavaScript -->
-        </section>
+        <div class="page-hero">
+            <h2>Surf News</h2>
+            <p>Latest updates from the lineup</p>
+        </div>
+
+        <section class="news-list" id="newsList"></section>
     </main>
 
     <footer>
@@ -39,13 +41,12 @@
             const newsListSection = document.getElementById('newsList');
 
             if (surfNews.length === 0) {
-                newsListSection.innerHTML = '<p style="text-align: center; color: #666;">No news available</p>';
+                newsListSection.innerHTML = '<p class="no-results">No news available</p>';
                 return;
             }
 
             let html = '';
 
-            // Featured news first
             const featuredNews = surfNews.filter(n => n.featured);
             if (featuredNews.length > 0) {
                 featuredNews.forEach(news => {
@@ -66,7 +67,6 @@
                 });
             }
 
-            // Other news
             const otherNews = surfNews.filter(n => !n.featured);
             if (otherNews.length > 0) {
                 html += '<div class="news-grid">';
@@ -96,7 +96,6 @@
 
             const newsListSection = document.getElementById('newsList');
 
-            // Build related spots section
             let relatedHtml = '';
             if (news.relatedSpots && news.relatedSpots.length > 0) {
                 relatedHtml = '<div class="related-resorts surf"><h3>Related Surf Spots</h3><div class="related-grid">';
@@ -136,7 +135,6 @@
             window.scrollTo(0, 0);
         }
 
-        // Initialize
         displayNewsList();
     </script>
 </body>

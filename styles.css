@@ -1,148 +1,488 @@
 /* ========================================
-   Peak2Wave - Common Styles
+   Peak2Wave - Premium Redesign
+   Inspired by ready.so aesthetic
    ======================================== */
 
-/* CSS Variables - Themes */
-:root {
-    /* Ski Theme - Grey & White */
-    --ski-primary: #4a5568;
-    --ski-secondary: #718096;
-    --ski-dark: #2d3748;
-    --ski-light: #e2e8f0;
-    --ski-white: #f7fafc;
-    --ski-accent: #a0aec0;
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
-    /* Surf Theme - Blue & Yellow */
-    --surf-primary: #2b6cb0;
-    --surf-secondary: #3182ce;
-    --surf-dark: #1a365d;
-    --surf-light: #bee3f8;
-    --surf-accent: #ecc94b;
-    --surf-yellow: #f6e05e;
+/* ========================================
+   Design Tokens
+   ======================================== */
+
+:root {
+    /* Typography */
+    --font: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+    /* Ski Theme - Modernized */
+    --ski-50: #f8fafc;
+    --ski-100: #f1f5f9;
+    --ski-200: #e2e8f0;
+    --ski-300: #cbd5e1;
+    --ski-400: #94a3b8;
+    --ski-500: #64748b;
+    --ski-600: #475569;
+    --ski-700: #334155;
+    --ski-800: #1e293b;
+    --ski-900: #0f172a;
+    --ski-accent: #6366f1;
+
+    /* Surf Theme - Modernized */
+    --surf-50: #eff6ff;
+    --surf-100: #dbeafe;
+    --surf-200: #bfdbfe;
+    --surf-300: #93c5fd;
+    --surf-400: #60a5fa;
+    --surf-500: #3b82f6;
+    --surf-600: #2563eb;
+    --surf-700: #1d4ed8;
+    --surf-800: #1e40af;
+    --surf-900: #1e3a5f;
+    --surf-accent: #f59e0b;
+    --surf-accent-light: #fbbf24;
 
     /* Neutral */
-    --text-dark: #1a202c;
-    --text-light: #718096;
+    --neutral-50: #fafafa;
+    --neutral-100: #f5f5f5;
+    --neutral-200: #e5e5e5;
+    --neutral-300: #d4d4d4;
+    --neutral-400: #a3a3a3;
+    --neutral-500: #737373;
+    --neutral-600: #525252;
+    --neutral-700: #404040;
+    --neutral-800: #262626;
+    --neutral-900: #171717;
     --white: #ffffff;
-    --grey-100: #f7fafc;
-    --grey-200: #edf2f7;
-    --grey-300: #e2e8f0;
-    --grey-800: #2d3748;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.08);
+    --shadow-xl: 0 24px 48px rgba(0, 0, 0, 0.1);
+
+    /* Radius */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --radius-full: 9999px;
+
+    /* Transitions */
+    --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    --duration: 0.2s;
 }
 
-/* Reset and base */
-* {
+/* ========================================
+   Reset & Base
+   ======================================== */
+
+*, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: var(--font);
     line-height: 1.6;
-    color: var(--text-dark);
+    color: var(--neutral-800);
+    background: var(--neutral-50);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    background: var(--grey-100);
 }
 
-/* Header - Default (neutral) */
+/* Subtle warm background for homepage */
+body.home-page {
+    background:
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(59, 130, 246, 0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 80% 80%, rgba(245, 158, 11, 0.04) 0%, transparent 50%),
+        var(--neutral-50);
+}
+
+/* Ski page - cool tones */
+body.ski-page {
+    background:
+        radial-gradient(ellipse 80% 50% at 30% 0%, rgba(99, 102, 241, 0.05) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 90% 90%, rgba(148, 163, 184, 0.08) 0%, transparent 50%),
+        var(--neutral-50);
+}
+
+/* Surf page - warm ocean tones */
+body.surf-page {
+    background:
+        radial-gradient(ellipse 80% 50% at 20% 0%, rgba(59, 130, 246, 0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 90% 80%, rgba(245, 158, 11, 0.05) 0%, transparent 50%),
+        var(--neutral-50);
+}
+
+/* Gear page */
+body.gear-page {
+    background: var(--neutral-900);
+}
+
+/* ========================================
+   Utility - Fade In Animation
+   ======================================== */
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.animate-in {
+    animation: fadeUp 0.5s var(--ease) both;
+}
+
+/* ========================================
+   Header / Navbar
+   ======================================== */
+
 header {
-    background: linear-gradient(135deg, var(--ski-primary) 0%, var(--ski-dark) 100%);
-    color: var(--white);
-    text-align: center;
-    padding: 3rem 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-bottom: 1px solid transparent;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    transition: background 0.35s var(--ease),
+                backdrop-filter 0.35s var(--ease),
+                border-color 0.35s var(--ease);
+}
+
+header:hover {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom-color: var(--neutral-200);
 }
 
 header h1 {
-    font-size: 3rem;
-    margin-bottom: 0.5rem;
-    font-weight: 700;
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--neutral-900);
+    opacity: 0.4;
+    transition: opacity 0.35s var(--ease);
+}
+
+header:hover h1 {
+    opacity: 1;
 }
 
 header p {
-    font-size: 1.2rem;
-    opacity: 0.9;
+    display: none;
 }
 
 header.compact {
-    padding: 2rem 1rem;
+    padding: 0 2rem;
 }
 
 header.compact h1 {
-    font-size: 2.5rem;
+    font-size: 1.25rem;
 }
 
 header.compact p {
-    font-size: 1.1rem;
+    display: none;
 }
 
-/* Ski Header */
-header.ski-header {
-    background: linear-gradient(135deg, var(--ski-secondary) 0%, var(--ski-dark) 100%);
-}
-
-/* Surf Header (for future use) */
+/* Override themed headers — same transparent look */
+header.ski-header,
 header.surf-header {
-    background: linear-gradient(135deg, var(--surf-secondary) 0%, var(--surf-dark) 100%);
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    color: var(--neutral-900);
+}
+
+header.ski-header:hover,
+header.surf-header:hover {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+}
+
+header.ski-header h1,
+header.surf-header h1 {
+    color: var(--neutral-900);
+}
+
+/* Ski & Surf pages: header fully transparent, white text over hero image */
+.ski-page header,
+.surf-page header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 64px;
+    padding: 0 2rem;
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-bottom: 1px solid transparent;
+    z-index: 200;
+}
+
+.ski-page header h1,
+.surf-page header h1 {
+    color: var(--white);
+    opacity: 0.7;
+}
+
+.ski-page header h1 a,
+.surf-page header h1 a {
+    color: var(--white) !important;
+}
+
+.ski-page header nav a,
+.surf-page header nav a {
+    color: rgba(255, 255, 255, 0.7);
+    opacity: 1;
+}
+
+.ski-page header nav a:hover,
+.surf-page header nav a:hover {
+    color: var(--white);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.ski-page header .header-search-btn,
+.surf-page header .header-search-btn {
+    color: rgba(255, 255, 255, 0.7);
+    opacity: 1;
+    border-color: transparent;
+    background: transparent;
+}
+
+.ski-page header .header-search-btn:hover,
+.surf-page header .header-search-btn:hover {
+    color: var(--white);
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* On hover: dark glassmorphism matching buttons */
+.ski-page header:hover,
+.surf-page header:hover {
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(16px) saturate(150%);
+    -webkit-backdrop-filter: blur(16px) saturate(150%);
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+.ski-page header:hover h1,
+.surf-page header:hover h1 {
+    color: var(--white);
+    opacity: 1;
+}
+
+.ski-page header:hover h1 a,
+.surf-page header:hover h1 a {
+    color: var(--white) !important;
+}
+
+.ski-page header:hover nav a,
+.surf-page header:hover nav a {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.ski-page header:hover nav a:hover,
+.surf-page header:hover nav a:hover {
+    color: var(--white);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.ski-page header:hover .header-search-btn,
+.surf-page header:hover .header-search-btn {
+    color: rgba(255, 255, 255, 0.85);
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Header right zone: nav + search icon */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
 }
 
 /* Navigation */
 nav {
-    background: rgba(0,0,0,0.15);
-    padding: 0.5rem;
-    margin-top: 1rem;
-    border-radius: 5px;
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    background: none;
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
 }
 
 nav a {
-    color: var(--white);
+    color: var(--neutral-500);
     text-decoration: none;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    transition: background 0.3s;
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 0.5rem 0.875rem;
+    border-radius: var(--radius-sm);
+    transition: all var(--duration) var(--ease);
+    opacity: 0.4;
+}
+
+header:hover nav a {
+    opacity: 1;
 }
 
 nav a:hover {
-    background: rgba(255,255,255,0.2);
+    color: var(--neutral-900);
+    background: var(--neutral-100);
 }
 
-/* Main */
+/* Search icon in header */
+.header-search-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-sm);
+    border: 1px solid transparent;
+    background: transparent;
+    color: var(--neutral-400);
+    font-size: 0.9375rem;
+    cursor: pointer;
+    transition: all var(--duration) var(--ease);
+    font-family: var(--font);
+    padding: 0;
+    margin-left: 0.375rem;
+    position: relative;
+    opacity: 0.4;
+}
+
+header:hover .header-search-btn {
+    opacity: 1;
+    border-color: var(--neutral-200);
+    background: var(--white);
+}
+
+.header-search-btn:hover {
+    background: var(--neutral-100);
+    color: var(--neutral-700);
+    border-color: var(--neutral-300);
+}
+
+.surf-page .header-search-btn:hover {
+    background: var(--surf-50);
+    border-color: var(--surf-200);
+    color: var(--surf-600);
+}
+
+.ski-page .header-search-btn:hover {
+    background: var(--ski-50);
+    border-color: var(--ski-300);
+    color: var(--ski-600);
+}
+
+
+/* ========================================
+   Page Hero (replaces old header content)
+   ======================================== */
+
+.page-hero {
+    padding: 4rem 2rem 3rem;
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto;
+    animation: fadeUp 0.6s var(--ease) both;
+}
+
+.page-hero h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.15;
+    color: var(--neutral-900);
+    margin-bottom: 0.75rem;
+}
+
+.surf-page .page-hero h2 {
+    background: linear-gradient(135deg, var(--neutral-900) 0%, var(--surf-600) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.ski-page .page-hero h2 {
+    background: linear-gradient(135deg, var(--neutral-900) 0%, var(--ski-accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.page-hero p {
+    font-size: 1.125rem;
+    color: var(--neutral-500);
+    line-height: 1.6;
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+/* ========================================
+   Main Content
+   ======================================== */
+
 main {
     max-width: 1200px;
-    margin: 2rem auto;
-    padding: 0 1rem;
+    margin: 0 auto;
+    padding: 0 2rem 4rem;
     flex: 1;
     width: 100%;
 }
 
-/* Footer */
+/* ========================================
+   Footer
+   ======================================== */
+
 footer {
-    background: var(--grey-800);
-    color: var(--white);
+    background: linear-gradient(180deg, var(--neutral-800) 0%, var(--neutral-900) 100%);
+    color: var(--neutral-400);
     text-align: center;
-    padding: 2rem 1rem;
+    padding: 2.5rem 2rem;
     margin-top: auto;
+    font-size: 0.875rem;
+    border-top: 1px solid var(--neutral-700);
 }
 
 footer .instagram {
     margin-top: 0.5rem;
-    font-size: 0.95rem;
-    opacity: 0.9;
+    font-size: 0.875rem;
 }
 
 footer .instagram a {
-    color: var(--surf-accent);
+    color: var(--white);
     text-decoration: none;
     font-weight: 600;
-    transition: color 0.3s;
+    transition: opacity var(--duration) var(--ease);
 }
 
 footer .instagram a:hover {
-    color: var(--surf-yellow);
-    text-decoration: underline;
+    opacity: 0.7;
+    text-decoration: none;
 }
 
 /* ========================================
@@ -151,134 +491,312 @@ footer .instagram a:hover {
 
 .hero {
     text-align: center;
-    padding: 2rem;
-    background: var(--white);
-    border-radius: 10px;
-    margin-bottom: 2rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    padding: 5rem 2rem 4rem;
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    background: none;
+    box-shadow: none;
+    border-radius: 0;
+    animation: fadeUp 0.6s var(--ease) both;
+    position: relative;
 }
 
 .hero h2 {
-    color: var(--ski-dark);
+    font-size: 3.25rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+    color: var(--neutral-900);
     margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--neutral-900) 0%, var(--surf-700) 50%, var(--surf-accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
+.hero p {
+    font-size: 1.1875rem;
+    color: var(--neutral-500);
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+/* Activity Cards */
 .activities {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 960px;
+    margin: 0 auto;
+    animation: fadeUp 0.6s var(--ease) 0.1s both;
 }
 
 .activity-card {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     background: var(--white);
     padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--neutral-200);
     text-decoration: none;
     color: inherit;
-    border-top: 4px solid var(--ski-accent);
+    transition: all 0.3s var(--ease);
+    position: relative;
+    overflow: hidden;
+}
+
+.activity-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--neutral-300);
+    transition: all 0.3s var(--ease);
 }
 
 .activity-card:hover {
-    transform: translateY(-5px);
-    cursor: pointer;
-    box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: transparent;
+}
+
+.activity-card:hover::before {
+    height: 4px;
 }
 
 .activity-card h3 {
-    color: var(--ski-dark);
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--neutral-900);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
 }
 
-/* Ski themed card */
-.activity-card.ski-theme {
-    border-top-color: var(--ski-secondary);
-}
-
-.activity-card.ski-theme h3 {
-    color: var(--ski-primary);
+.activity-card p {
+    font-size: 0.9375rem;
+    color: var(--neutral-500);
+    line-height: 1.5;
 }
 
 /* Surf themed card */
 .activity-card.surf-theme {
-    border-top-color: var(--surf-accent);
+    background: linear-gradient(145deg, var(--white) 0%, var(--surf-50) 100%);
+    border-color: var(--surf-100);
+}
+
+.activity-card.surf-theme::before {
+    background: linear-gradient(90deg, var(--surf-400), var(--surf-accent));
+}
+
+.activity-card.surf-theme:hover {
+    border-color: transparent;
+    box-shadow: 0 12px 32px rgba(37, 99, 235, 0.12);
 }
 
 .activity-card.surf-theme h3 {
-    color: var(--surf-primary);
+    color: var(--surf-700);
+}
+
+/* Ski themed card */
+.activity-card.ski-theme {
+    background: linear-gradient(145deg, var(--white) 0%, var(--ski-50) 100%);
+    border-color: var(--ski-200);
+}
+
+.activity-card.ski-theme::before {
+    background: linear-gradient(90deg, var(--ski-400), var(--ski-accent));
+}
+
+.activity-card.ski-theme:hover {
+    border-color: transparent;
+    box-shadow: 0 12px 32px rgba(99, 102, 241, 0.12);
+}
+
+.activity-card.ski-theme h3 {
+    color: var(--ski-700);
+}
+
+/* Neutral gear card */
+.activity-card:not(.surf-theme):not(.ski-theme) {
+    background: linear-gradient(145deg, var(--white) 0%, #fefce8 100%);
+    border-color: #fef3c7;
+}
+
+.activity-card:not(.surf-theme):not(.ski-theme)::before {
+    background: linear-gradient(90deg, var(--surf-accent), #f97316);
+}
+
+.activity-card:not(.surf-theme):not(.ski-theme):hover {
+    border-color: transparent;
+    box-shadow: 0 12px 32px rgba(245, 158, 11, 0.12);
 }
 
 /* ========================================
-   Ski Page
+   Search Section — Collapsible
    ======================================== */
 
-.ski-page {
-    background: var(--ski-white);
-}
-
-/* Search section */
 .search-section {
     text-align: center;
-    padding: 2rem;
-    background: var(--white);
-    border-radius: 10px;
-    margin-bottom: 2rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-}
-
-.search-section h2 {
-    color: var(--ski-dark);
     margin-bottom: 1.5rem;
 }
 
-.search-bar {
+/* --- Panel: hidden by default, opens from top --- */
+.search-panel {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(-12px);
+    transition: max-height 0.45s var(--ease),
+                opacity 0.35s var(--ease),
+                transform 0.35s var(--ease),
+                padding 0.45s var(--ease);
+    padding: 0 2rem;
+    border-radius: var(--radius-xl);
+}
+
+.search-section.expanded .search-panel {
+    max-height: 220px;
+    opacity: 1;
+    transform: translateY(0);
+    padding: 2rem 2rem 2.5rem;
+    background: var(--white);
+    border: 1px solid var(--neutral-200);
+}
+
+.surf-page .search-section.expanded .search-panel {
+    background: linear-gradient(145deg, var(--white) 0%, var(--surf-50) 100%);
+    border-color: var(--surf-100);
+}
+
+.ski-page .search-section.expanded .search-panel {
+    background: linear-gradient(145deg, var(--white) 0%, var(--ski-50) 100%);
+    border-color: var(--ski-200);
+}
+
+.search-panel h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--neutral-900);
+    margin-bottom: 1.25rem;
+}
+
+.surf-page .search-panel h2 {
+    background: linear-gradient(135deg, var(--neutral-900) 0%, var(--surf-600) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.ski-page .search-panel h2 {
+    background: linear-gradient(135deg, var(--neutral-900) 0%, var(--ski-600) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Search row inside panel */
+.search-bar-row {
     display: flex;
-    max-width: 600px;
+    max-width: 560px;
     margin: 0 auto;
     gap: 0.5rem;
+    align-items: center;
 }
 
-.search-bar input {
+.search-bar-row input {
     flex: 1;
-    padding: 1rem 1.5rem;
-    font-size: 1.1rem;
-    border: 2px solid var(--grey-300);
-    border-radius: 50px;
+    padding: 0.875rem 1.25rem;
+    font-size: 0.9375rem;
+    font-family: var(--font);
+    border: 1px solid var(--neutral-300);
+    border-radius: var(--radius-full);
     outline: none;
-    transition: border-color 0.3s;
     background: var(--white);
+    color: var(--neutral-800);
+    transition: all var(--duration) var(--ease);
 }
 
-.search-bar input:focus {
-    border-color: var(--ski-secondary);
+.search-bar-row input::placeholder {
+    color: var(--neutral-400);
 }
 
-.ski-page .search-bar button {
-    padding: 1rem 2rem;
-    font-size: 1.1rem;
-    background: linear-gradient(135deg, var(--ski-secondary) 0%, var(--ski-dark) 100%);
+.search-bar-row input:focus {
+    border-color: var(--neutral-900);
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.06);
+}
+
+.search-bar-row .btn-search {
+    padding: 0.875rem 1.5rem;
+    font-size: 0.9375rem;
+    font-family: var(--font);
+    font-weight: 600;
+    background: var(--neutral-900);
     color: var(--white);
     border: none;
-    border-radius: 50px;
+    border-radius: var(--radius-full);
     cursor: pointer;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: all var(--duration) var(--ease);
+    white-space: nowrap;
 }
 
-.ski-page .search-bar button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 15px rgba(74, 85, 104, 0.4);
+.search-bar-row .btn-search:hover {
+    background: var(--neutral-700);
 }
 
-/* Quick access buttons */
+.search-bar-row .btn-close-search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--neutral-200);
+    background: var(--white);
+    color: var(--neutral-400);
+    font-size: 1.125rem;
+    cursor: pointer;
+    transition: all var(--duration) var(--ease);
+    font-family: var(--font);
+    line-height: 1;
+    padding: 0;
+}
+
+.search-bar-row .btn-close-search:hover {
+    background: var(--neutral-100);
+    color: var(--neutral-900);
+    border-color: var(--neutral-300);
+}
+
+/* Surf theme overrides */
+.surf-page .search-bar-row input:focus {
+    border-color: var(--surf-500);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.surf-page .search-bar-row .btn-search {
+    background: var(--surf-600);
+}
+
+.surf-page .search-bar-row .btn-search:hover {
+    background: var(--surf-700);
+}
+
+/* ========================================
+   Quick Access Buttons
+   ======================================== */
+
 .quick-access {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
     margin-top: 2rem;
+    animation: fadeUp 0.5s var(--ease) 0.15s both;
 }
 
 .quick-btn {
@@ -286,83 +804,131 @@ footer .instagram a:hover {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 2.5rem 2rem;
-    border-radius: 15px;
+    padding: 2rem 1.5rem;
+    border-radius: var(--radius-lg);
     text-decoration: none;
     color: var(--white);
-    transition: transform 0.3s, box-shadow 0.3s;
-    min-height: 200px;
+    transition: all 0.3s var(--ease);
+    min-height: 160px;
+    position: relative;
+    overflow: hidden;
+}
+
+.quick-btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0);
+    transition: background 0.3s var(--ease);
+    border-radius: var(--radius-lg);
 }
 
 .quick-btn:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.quick-btn:hover::after {
+    background: rgba(0, 0, 0, 0.06);
 }
 
 .quick-btn .icon {
-    font-size: 4rem;
-    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    margin-bottom: 0.75rem;
+    position: relative;
+    z-index: 1;
 }
 
 .quick-btn h3 {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
     text-align: center;
+    position: relative;
+    z-index: 1;
 }
 
 .quick-btn p {
-    font-size: 0.95rem;
-    opacity: 0.9;
+    font-size: 0.8125rem;
+    opacity: 0.85;
     text-align: center;
+    position: relative;
+    z-index: 1;
 }
 
-/* News highlight section */
+/* News highlight */
 .news-highlight {
     margin-top: 2rem;
+    animation: fadeUp 0.5s var(--ease) 0.1s both;
 }
 
 .news-highlight .quick-btn {
     width: 100%;
     max-width: 100%;
+    min-height: 120px;
+    flex-direction: row;
+    gap: 1rem;
+    padding: 1.5rem 2rem;
 }
 
-/* Ski page button colors - Grey tones */
+.news-highlight .quick-btn .icon {
+    margin-bottom: 0;
+    font-size: 2rem;
+}
+
+.news-highlight .quick-btn h3 {
+    text-align: left;
+}
+
+.news-highlight .quick-btn p {
+    text-align: left;
+}
+
+/* Ski page button colors - modernized */
 .ski-page .btn-news {
-    background: linear-gradient(135deg, #1a365d 0%, #2b6cb0 100%);
-    color: var(--white);
+    background: var(--ski-800);
 }
 
 .ski-page .btn-snow {
-    background: linear-gradient(135deg, var(--ski-light) 0%, var(--ski-accent) 100%);
-    color: var(--ski-dark);
+    background: linear-gradient(135deg, var(--ski-200) 0%, var(--ski-400) 100%);
+    color: var(--ski-900);
 }
 
 .ski-page .btn-deals {
-    background: linear-gradient(135deg, var(--ski-secondary) 0%, var(--ski-primary) 100%);
+    background: var(--ski-600);
 }
 
 .ski-page .btn-popular {
-    background: linear-gradient(135deg, var(--ski-primary) 0%, var(--ski-dark) 100%);
+    background: var(--ski-700);
 }
 
-/* Surf page button colors - Blue & Yellow (for future use) */
-.surf-page .btn-snow {
-    background: linear-gradient(135deg, var(--surf-light) 0%, var(--surf-secondary) 100%);
+/* Surf page button colors */
+.surf-page .btn-surf-news {
+    background: var(--surf-700);
 }
 
-.surf-page .btn-deals {
-    background: linear-gradient(135deg, var(--surf-accent) 0%, #d69e2e 100%);
-    color: var(--surf-dark);
+.surf-page .btn-waves {
+    background: linear-gradient(135deg, var(--surf-200) 0%, var(--surf-400) 100%);
+    color: var(--surf-900);
 }
 
-.surf-page .btn-popular {
-    background: linear-gradient(135deg, var(--surf-secondary) 0%, var(--surf-dark) 100%);
+.surf-page .btn-beginner {
+    background: linear-gradient(135deg, var(--surf-accent-light) 0%, var(--surf-accent) 100%);
+    color: var(--neutral-900);
 }
 
-/* Resort list */
+.surf-page .btn-popular-surf {
+    background: var(--surf-600);
+}
+
+/* ========================================
+   Station / Resort List
+   ======================================== */
+
 .stations-list {
     margin-top: 3rem;
     display: none;
+    animation: fadeUp 0.5s var(--ease) both;
 }
 
 .stations-list.active {
@@ -370,86 +936,93 @@ footer .instagram a:hover {
 }
 
 .stations-list h2 {
-    color: var(--ski-dark);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--neutral-900);
     margin-bottom: 1.5rem;
     text-align: center;
+    letter-spacing: -0.02em;
 }
 
 .station-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1rem;
 }
 
 .station-card {
     background: var(--white);
     padding: 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    transition: transform 0.3s;
-    border-left: 4px solid var(--ski-secondary);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--neutral-200);
+    transition: all 0.25s var(--ease);
+    border-left: 3px solid var(--ski-400);
+    position: relative;
 }
 
 .station-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(99, 102, 241, 0.08);
+    background: linear-gradient(145deg, var(--white) 0%, var(--ski-50) 100%);
+    border-color: var(--ski-200);
+    border-left-color: var(--ski-accent);
 }
 
 .station-card h4 {
-    color: var(--ski-dark);
-    margin-bottom: 0.5rem;
-    font-size: 1.2rem;
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--neutral-900);
+    margin-bottom: 0.375rem;
+    letter-spacing: -0.01em;
 }
 
 .station-card .resort-location {
-    color: var(--text-light);
-    font-size: 0.9rem;
+    color: var(--neutral-500);
+    font-size: 0.8125rem;
 }
 
 .station-card .resort-altitude {
-    color: var(--ski-primary);
-    font-size: 0.9rem;
-    margin: 0.3rem 0;
+    color: var(--neutral-600);
+    font-size: 0.8125rem;
+    margin: 0.25rem 0;
 }
 
 .station-card .snow-info {
-    color: var(--ski-secondary);
-    font-weight: bold;
-    margin: 0.5rem 0;
+    color: var(--ski-700);
+    font-weight: 600;
+    font-size: 0.875rem;
+    margin: 0.375rem 0;
 }
 
 .station-card .recent-snow {
-    color: #2b6cb0;
-    font-weight: bold;
-    background: #bee3f8;
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
+    color: var(--surf-700);
+    font-weight: 600;
+    background: var(--surf-100);
+    padding: 0.2rem 0.5rem;
+    border-radius: var(--radius-sm);
     display: inline-block;
-    font-size: 0.85rem;
-    margin: 0.3rem 0;
+    font-size: 0.75rem;
+    margin: 0.25rem 0;
 }
 
 .station-card .price-info {
-    color: var(--ski-primary);
+    color: var(--neutral-700);
+    font-size: 0.875rem;
 }
 
 .station-card .resort-stats {
-    color: var(--text-light);
-    font-size: 0.85rem;
+    color: var(--neutral-500);
+    font-size: 0.8125rem;
     margin-top: 0.5rem;
     padding-top: 0.5rem;
-    border-top: 1px solid var(--grey-200);
+    border-top: 1px solid var(--neutral-100);
 }
 
 /* Clickable station cards */
 a.station-card {
     text-decoration: none;
     color: inherit;
-    position: relative;
     cursor: pointer;
-}
-
-a.station-card:hover {
-    border-left-color: var(--ski-dark);
 }
 
 a.station-card .card-arrow {
@@ -457,15 +1030,15 @@ a.station-card .card-arrow {
     top: 50%;
     right: 1rem;
     transform: translateY(-50%);
-    font-size: 1.5rem;
-    color: var(--ski-accent);
+    font-size: 1.25rem;
+    color: var(--neutral-400);
     opacity: 0;
-    transition: opacity 0.3s, transform 0.3s;
+    transition: all 0.25s var(--ease);
 }
 
 a.station-card:hover .card-arrow {
     opacity: 1;
-    transform: translateY(-50%) translateX(5px);
+    transform: translateY(-50%) translateX(4px);
 }
 
 /* ========================================
@@ -473,8 +1046,9 @@ a.station-card:hover .card-arrow {
    ======================================== */
 
 .resort-detail {
-    max-width: 900px;
+    max-width: 880px;
     margin: 0 auto;
+    animation: fadeUp 0.5s var(--ease) both;
 }
 
 .resort-hero {
@@ -488,41 +1062,53 @@ a.station-card:hover .card-arrow {
 }
 
 .badge {
-    padding: 0.4rem 1rem;
-    border-radius: 20px;
-    font-size: 0.85rem;
+    padding: 0.375rem 0.875rem;
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
     font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
 }
 
 .badge-popular {
-    background: var(--ski-primary);
+    background: var(--neutral-900);
     color: var(--white);
 }
 
 .badge-snow {
-    background: #bee3f8;
-    color: #2b6cb0;
+    background: var(--surf-100);
+    color: var(--surf-700);
 }
 
 .resort-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
     margin-bottom: 2rem;
 }
 
 .resort-card {
-    background: var(--white);
+    background: linear-gradient(145deg, var(--white) 0%, var(--neutral-50) 100%);
     padding: 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--neutral-200);
+    transition: all 0.25s var(--ease);
+}
+
+.resort-card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--neutral-300);
 }
 
 .resort-card h3 {
-    color: var(--ski-dark);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--neutral-500);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
     margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid var(--ski-light);
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--neutral-100);
 }
 
 .stat-row {
@@ -530,7 +1116,7 @@ a.station-card:hover .card-arrow {
     justify-content: space-between;
     align-items: center;
     padding: 0.5rem 0;
-    border-bottom: 1px solid var(--grey-200);
+    border-bottom: 1px solid var(--neutral-100);
 }
 
 .stat-row:last-child {
@@ -538,90 +1124,108 @@ a.station-card:hover .card-arrow {
 }
 
 .stat-label {
-    color: var(--text-light);
+    color: var(--neutral-500);
+    font-size: 0.875rem;
 }
 
 .stat-value {
     font-weight: 600;
-    color: var(--ski-dark);
+    color: var(--neutral-900);
+    font-size: 0.9375rem;
 }
 
 .stat-value.price {
-    font-size: 1.2rem;
-    color: var(--ski-primary);
+    font-size: 1.25rem;
+    color: var(--neutral-900);
+    font-weight: 700;
 }
 
 .stat-row.highlight {
-    background: #bee3f8;
-    margin: 0.5rem -1rem;
-    padding: 0.75rem 1rem;
-    border-radius: 5px;
+    background: var(--surf-50);
+    margin: 0.375rem -1rem;
+    padding: 0.625rem 1rem;
+    border-radius: var(--radius-sm);
     border-bottom: none;
 }
 
 .stat-row.highlight .stat-value {
-    color: #2b6cb0;
+    color: var(--surf-700);
 }
 
 .resort-actions {
     display: flex;
-    gap: 1rem;
+    gap: 0.75rem;
     flex-wrap: wrap;
     margin-top: 2rem;
 }
 
 .btn-primary,
 .btn-secondary {
-    display: inline-block;
-    padding: 1rem 2rem;
-    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.875rem 1.75rem;
+    border-radius: var(--radius-full);
     text-decoration: none;
+    font-family: var(--font);
     font-weight: 600;
+    font-size: 0.9375rem;
     text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: all var(--duration) var(--ease);
+    cursor: pointer;
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, var(--ski-secondary) 0%, var(--ski-dark) 100%);
+    background: var(--neutral-900);
     color: var(--white);
 }
 
 .btn-primary:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(45, 55, 72, 0.3);
+    background: var(--neutral-700);
+    transform: none;
+    box-shadow: none;
 }
 
 .btn-secondary {
     background: var(--white);
-    color: var(--ski-dark);
-    border: 2px solid var(--ski-secondary);
+    color: var(--neutral-700);
+    border: 1px solid var(--neutral-300);
 }
 
 .btn-secondary:hover {
-    background: var(--ski-light);
+    background: var(--neutral-50);
+    border-color: var(--neutral-400);
 }
 
 .btn-back {
-    display: inline-block;
-    padding: 1rem 2rem;
-    background: var(--ski-secondary);
+    display: inline-flex;
+    align-items: center;
+    padding: 0.875rem 1.75rem;
+    background: var(--neutral-900);
     color: var(--white);
     text-decoration: none;
-    border-radius: 8px;
+    border-radius: var(--radius-full);
+    font-weight: 600;
+    font-size: 0.9375rem;
     margin-top: 1rem;
 }
 
 .resort-not-found {
     text-align: center;
-    padding: 3rem;
-    background: var(--white);
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    padding: 4rem 2rem;
+    animation: fadeUp 0.5s var(--ease) both;
 }
 
 .resort-not-found h2 {
-    color: var(--ski-dark);
-    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--neutral-900);
+    margin-bottom: 0.75rem;
+}
+
+.resort-not-found p {
+    color: var(--neutral-500);
+    margin-bottom: 1.5rem;
 }
 
 /* ========================================
@@ -629,100 +1233,114 @@ a.station-card:hover .card-arrow {
    ======================================== */
 
 .news-list {
-    max-width: 900px;
+    max-width: 880px;
     margin: 0 auto;
+    animation: fadeUp 0.5s var(--ease) both;
 }
 
 .news-card {
     background: var(--white);
     padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    margin-bottom: 1.5rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--neutral-200);
+    margin-bottom: 1rem;
     cursor: pointer;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: all 0.25s var(--ease);
     position: relative;
 }
 
 .news-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--neutral-300);
+    background: linear-gradient(145deg, var(--white) 0%, var(--neutral-50) 100%);
 }
 
 .news-card.featured {
-    border-left: 4px solid #2b6cb0;
-    background: linear-gradient(135deg, var(--white) 0%, #f0f7ff 100%);
+    border-left: 3px solid var(--surf-500);
+    background: linear-gradient(145deg, var(--white) 0%, var(--surf-50) 100%);
 }
 
 .news-card.featured h2 {
-    font-size: 1.8rem;
-    color: var(--ski-dark);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--neutral-900);
     margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
 }
 
 .news-badge {
     display: inline-block;
-    background: #2b6cb0;
+    background: var(--neutral-900);
     color: var(--white);
-    padding: 0.25rem 0.75rem;
-    border-radius: 20px;
-    font-size: 0.8rem;
+    padding: 0.25rem 0.625rem;
+    border-radius: var(--radius-full);
+    font-size: 0.6875rem;
     font-weight: 600;
-    margin-bottom: 0.5rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
 }
 
 .news-category {
     display: inline-block;
-    background: var(--ski-light);
-    color: var(--ski-dark);
-    padding: 0.25rem 0.75rem;
-    border-radius: 20px;
-    font-size: 0.8rem;
+    background: var(--neutral-100);
+    color: var(--neutral-600);
+    padding: 0.25rem 0.625rem;
+    border-radius: var(--radius-full);
+    font-size: 0.6875rem;
     font-weight: 600;
-    margin-bottom: 0.5rem;
-    margin-left: 0.5rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    margin-left: 0.375rem;
 }
 
 .news-card.featured .news-category {
-    margin-left: 0;
+    margin-left: 0.375rem;
 }
 
 .news-card h3 {
-    font-size: 1.3rem;
-    color: var(--ski-dark);
-    margin-bottom: 0.5rem;
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--neutral-900);
+    margin-bottom: 0.375rem;
+    letter-spacing: -0.01em;
 }
 
 .news-subtitle {
-    color: var(--text-light);
+    color: var(--neutral-500);
     font-style: italic;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.9375rem;
 }
 
 .news-summary {
-    color: var(--text-dark);
+    color: var(--neutral-600);
     line-height: 1.7;
     margin-bottom: 1rem;
+    font-size: 0.9375rem;
 }
 
 .news-meta {
     display: flex;
     gap: 1rem;
-    color: var(--text-light);
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
+    color: var(--neutral-400);
+    font-size: 0.8125rem;
+    margin-bottom: 0.75rem;
 }
 
 .read-more {
-    color: #2b6cb0;
+    color: var(--neutral-900);
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.8125rem;
+    letter-spacing: 0.01em;
 }
 
 .news-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1rem;
 }
 
 .news-grid .news-card {
@@ -732,52 +1350,79 @@ a.station-card:hover .card-arrow {
 /* Article view */
 .news-article {
     background: var(--white);
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    padding: 2.5rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--neutral-200);
+    animation: fadeUp 0.5s var(--ease) both;
+    box-shadow: var(--shadow-sm);
+}
+
+.news-article .article-header h1 {
+    background: linear-gradient(135deg, var(--neutral-900) 0%, var(--ski-600) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.news-article.surf .article-header h1 {
+    background: linear-gradient(135deg, var(--neutral-900) 0%, var(--surf-600) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .btn-back-article {
     background: none;
     border: none;
-    color: #2b6cb0;
-    font-size: 1rem;
+    color: var(--neutral-500);
+    font-size: 0.875rem;
+    font-family: var(--font);
+    font-weight: 500;
     cursor: pointer;
-    padding: 0.5rem 0;
-    margin-bottom: 1rem;
+    padding: 0.375rem 0;
+    margin-bottom: 1.5rem;
+    transition: color var(--duration) var(--ease);
 }
 
 .btn-back-article:hover {
-    text-decoration: underline;
+    color: var(--neutral-900);
+    text-decoration: none;
 }
 
 .article-header {
-    border-bottom: 2px solid var(--grey-200);
+    border-bottom: 1px solid var(--neutral-100);
     padding-bottom: 1.5rem;
     margin-bottom: 2rem;
 }
 
 .article-header h1 {
     font-size: 2rem;
-    color: var(--ski-dark);
-    margin: 0.5rem 0;
+    font-weight: 800;
+    color: var(--neutral-900);
+    margin: 0.75rem 0;
+    letter-spacing: -0.03em;
+    line-height: 1.2;
 }
 
 .article-subtitle {
-    font-size: 1.2rem;
-    color: var(--text-light);
+    font-size: 1.0625rem;
+    color: var(--neutral-500);
     font-style: italic;
     margin-bottom: 1rem;
 }
 
 .article-content {
     line-height: 1.8;
-    color: var(--text-dark);
+    color: var(--neutral-700);
+    font-size: 1rem;
 }
 
 .article-content h3 {
-    color: var(--ski-dark);
-    margin: 2rem 0 1rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--neutral-900);
+    margin: 2rem 0 0.75rem;
+    letter-spacing: -0.01em;
 }
 
 .article-content p {
@@ -785,7 +1430,7 @@ a.station-card:hover .card-arrow {
 }
 
 .article-content ul {
-    margin: 1rem 0 1rem 2rem;
+    margin: 1rem 0 1rem 1.5rem;
 }
 
 .article-content li {
@@ -794,45 +1439,53 @@ a.station-card:hover .card-arrow {
 
 /* Related resorts */
 .related-resorts {
-    margin-top: 2rem;
+    margin-top: 2.5rem;
     padding-top: 2rem;
-    border-top: 2px solid var(--grey-200);
+    border-top: 1px solid var(--neutral-100);
 }
 
 .related-resorts h3 {
-    color: var(--ski-dark);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--neutral-500);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
     margin-bottom: 1rem;
 }
 
 .related-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 0.75rem;
 }
 
 .related-resort-card {
     display: flex;
     flex-direction: column;
     padding: 1rem;
-    background: var(--grey-100);
-    border-radius: 8px;
+    background: var(--neutral-50);
+    border-radius: var(--radius-sm);
     text-decoration: none;
     color: inherit;
-    transition: background 0.3s;
+    transition: all var(--duration) var(--ease);
+    border: 1px solid transparent;
 }
 
 .related-resort-card:hover {
-    background: var(--ski-light);
+    background: var(--white);
+    border-color: var(--neutral-200);
+    box-shadow: var(--shadow-sm);
 }
 
 .related-resort-card strong {
-    color: var(--ski-dark);
-    margin-bottom: 0.25rem;
+    color: var(--neutral-900);
+    font-size: 0.875rem;
+    margin-bottom: 0.125rem;
 }
 
 .related-resort-card span {
-    font-size: 0.85rem;
-    color: var(--text-light);
+    font-size: 0.75rem;
+    color: var(--neutral-500);
 }
 
 /* ========================================
@@ -840,33 +1493,195 @@ a.station-card:hover .card-arrow {
    ======================================== */
 
 .gear-page {
-    background: var(--grey-100);
+    background: var(--neutral-900);
 }
 
-.gear-wizard {
-    max-width: 800px;
-    margin: 0 auto;
+.gear-page main {
+    max-width: 100%;
+    padding: 0;
+}
+
+.gear-hero {
+    position: relative;
+    width: 100%;
+    height: 85vh;
+    min-height: 520px;
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    margin-bottom: 0;
+    image-rendering: high-quality;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gear-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.15) 0%,
+        rgba(0, 0, 0, 0.35) 70%,
+        var(--neutral-900) 100%
+    );
+    z-index: 1;
+}
+
+.gear-hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+}
+
+.gear-hero-content h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    color: var(--white);
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+    margin-bottom: 2.5rem;
+}
+
+.gear-hero-buttons {
+    display: flex;
+    gap: 1.25rem;
+    justify-content: center;
+}
+
+.gear-hero-buttons .hero-overlay-btn {
+    width: auto;
+    min-width: 200px;
+    justify-content: center;
+}
+
+/* Hero wizard steps */
+.hero-wizard-step {
+    display: none;
+    animation: fadeUp 0.4s var(--ease);
+}
+
+.hero-wizard-step.active {
+    display: block;
+}
+
+.hero-back-btn {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 0.625rem 1.5rem;
+    color: var(--white);
+    font-size: 0.9375rem;
+    font-family: var(--font);
+    font-weight: 600;
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: var(--radius-full);
+    transition: all var(--duration) var(--ease);
+}
+
+.hero-back-btn:hover {
+    color: var(--white);
+    background: rgba(255, 255, 255, 0.22);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+@media (max-width: 768px) {
+    .gear-hero {
+        height: 80vh;
+        min-height: 480px;
+    }
+
+    .gear-hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .gear-hero-content h2 {
+        font-size: 1.75rem;
+    }
+}
+
+.gear-page header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 64px;
+    padding: 0 2rem;
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-bottom: 1px solid transparent;
+    z-index: 200;
+}
+
+.gear-page header h1,
+.gear-page header h1 a {
+    color: var(--white) !important;
+    opacity: 0.7;
+}
+
+.gear-page header nav a {
+    color: rgba(255, 255, 255, 0.7);
+    opacity: 1;
+}
+
+.gear-page header nav a:hover {
+    color: var(--white);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.gear-page header:hover {
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(16px) saturate(150%);
+    -webkit-backdrop-filter: blur(16px) saturate(150%);
+    border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+.gear-page header:hover h1,
+.gear-page header:hover h1 a {
+    color: var(--white) !important;
+    opacity: 1;
+}
+
+.gear-page header:hover nav a {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.gear-page header:hover nav a:hover {
+    color: var(--white);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.gear-page footer {
+    background: transparent !important;
+    border-top-color: rgba(255, 255, 255, 0.06) !important;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.gear-page footer .instagram a {
+    color: rgba(255, 255, 255, 0.6);
 }
 
 .wizard-step {
     display: none;
-    animation: fadeIn 0.3s ease;
+    animation: fadeUp 0.4s var(--ease);
 }
 
 .wizard-step.active {
     display: block;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
 .wizard-step h2 {
     text-align: center;
-    color: var(--ski-dark);
-    margin-bottom: 2rem;
-    font-size: 1.8rem;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--neutral-900);
+    margin-bottom: 2.5rem;
+    letter-spacing: -0.03em;
 }
 
 .activity-choices,
@@ -874,65 +1689,73 @@ a.station-card:hover .card-arrow {
 .purchase-choices,
 .location-choices {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
 }
 
 .choice-btn {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 2rem 1.5rem;
+    padding: 2rem 1.25rem;
     background: var(--white);
-    border: 2px solid var(--grey-300);
-    border-radius: 15px;
+    border: 1.5px solid var(--neutral-200);
+    border-radius: var(--radius-lg);
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.25s var(--ease);
+    font-family: var(--font);
 }
 
 .choice-btn:hover {
-    border-color: var(--ski-secondary);
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    border-color: var(--surf-400);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(59, 130, 246, 0.1);
+    background: linear-gradient(145deg, var(--white) 0%, var(--surf-50) 100%);
 }
 
 .choice-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    margin-bottom: 0.75rem;
 }
 
 .choice-label {
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: var(--ski-dark);
-    margin-bottom: 0.5rem;
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--neutral-900);
+    margin-bottom: 0.25rem;
 }
 
 .choice-desc {
-    font-size: 0.9rem;
-    color: var(--text-light);
+    font-size: 0.8125rem;
+    color: var(--neutral-500);
     text-align: center;
 }
 
 .back-btn {
     display: block;
     margin: 2rem auto 0;
-    padding: 0.75rem 1.5rem;
+    padding: 0.625rem 1.25rem;
     background: none;
     border: none;
-    color: var(--ski-secondary);
-    font-size: 1rem;
+    color: var(--neutral-500);
+    font-size: 0.875rem;
+    font-family: var(--font);
+    font-weight: 500;
     cursor: pointer;
+    transition: color var(--duration) var(--ease);
 }
 
 .back-btn:hover {
-    text-decoration: underline;
+    color: var(--neutral-900);
+    text-decoration: none;
 }
 
 /* Gear Results */
 .gear-results {
-    max-width: 1000px;
+    max-width: 960px;
     margin: 0 auto;
+    padding: 3rem 2rem 4rem;
+    animation: fadeUp 0.5s var(--ease) both;
 }
 
 .results-header {
@@ -941,125 +1764,141 @@ a.station-card:hover .card-arrow {
 }
 
 .results-header h2 {
-    color: var(--ski-dark);
-    margin-bottom: 0.5rem;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--white);
+    margin-bottom: 0.375rem;
+    letter-spacing: -0.03em;
 }
 
 .results-header p {
-    color: var(--text-light);
-    margin-bottom: 1rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 1.25rem;
+    font-size: 0.9375rem;
 }
 
 .restart-btn {
-    padding: 0.75rem 1.5rem;
-    background: var(--ski-secondary);
-    color: var(--white);
-    border: none;
-    border-radius: 8px;
+    padding: 0.625rem 1.5rem;
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-full);
     cursor: pointer;
-    font-size: 0.9rem;
+    font-size: 0.875rem;
+    font-family: var(--font);
+    font-weight: 600;
+    transition: all var(--duration) var(--ease);
 }
 
 .restart-btn:hover {
-    background: var(--ski-dark);
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--white);
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
 .gear-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
 }
 
 .gear-card {
-    background: var(--white);
+    background: rgba(255, 255, 255, 0.06);
     padding: 1.5rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    transition: transform 0.3s;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.25s var(--ease);
 }
 
 .gear-card:hover {
-    transform: translateY(-3px);
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
 }
 
 .gear-category {
     display: inline-block;
-    background: var(--ski-light);
-    color: var(--ski-dark);
-    padding: 0.25rem 0.75rem;
-    border-radius: 20px;
-    font-size: 0.8rem;
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.6);
+    padding: 0.2rem 0.625rem;
+    border-radius: var(--radius-full);
+    font-size: 0.6875rem;
     font-weight: 600;
-    margin-bottom: 0.75rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 0.625rem;
 }
 
 .gear-card h3 {
-    color: var(--ski-dark);
-    margin-bottom: 0.5rem;
-    font-size: 1.2rem;
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.375rem;
 }
 
 .gear-description {
-    color: var(--text-light);
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.8125rem;
+    margin-bottom: 0.75rem;
     line-height: 1.5;
 }
 
 .gear-features {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
+    gap: 0.375rem;
+    margin-bottom: 0.75rem;
 }
 
 .feature-tag {
-    background: var(--grey-200);
-    color: var(--ski-dark);
-    padding: 0.2rem 0.6rem;
-    border-radius: 4px;
-    font-size: 0.75rem;
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.6);
+    padding: 0.175rem 0.5rem;
+    border-radius: var(--radius-full);
+    font-size: 0.6875rem;
+    font-weight: 500;
 }
 
 .gear-price {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.75rem 0;
-    border-top: 1px solid var(--grey-200);
-    border-bottom: 1px solid var(--grey-200);
-    margin-bottom: 0.75rem;
+    padding: 0.625rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    margin-bottom: 0.625rem;
 }
 
 .price-label {
-    color: var(--text-light);
-    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.8125rem;
 }
 
 .price-value {
-    color: var(--ski-primary);
+    color: var(--white);
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
 .gear-brands {
-    font-size: 0.85rem;
+    font-size: 0.8125rem;
 }
 
 .brands-label {
-    color: var(--text-light);
+    color: rgba(255, 255, 255, 0.5);
 }
 
 .brands-list {
-    color: var(--ski-dark);
+    color: rgba(255, 255, 255, 0.8);
     font-weight: 500;
 }
 
 .no-results {
     grid-column: 1 / -1;
     text-align: center;
-    color: var(--text-light);
+    color: rgba(255, 255, 255, 0.5);
     padding: 3rem;
+    font-size: 0.9375rem;
 }
 
 /* ========================================
@@ -1067,53 +1906,14 @@ a.station-card:hover .card-arrow {
    ======================================== */
 
 .surf-page {
-    background: linear-gradient(180deg, #f0f7ff 0%, var(--grey-100) 100%);
-}
-
-/* Surf search bar */
-.surf-page .search-bar input:focus {
-    border-color: var(--surf-secondary);
-}
-
-.surf-page .search-bar button {
-    padding: 1rem 2rem;
-    font-size: 1.1rem;
-    background: linear-gradient(135deg, var(--surf-secondary) 0%, var(--surf-dark) 100%);
-    color: var(--white);
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.surf-page .search-bar button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 15px rgba(43, 108, 176, 0.4);
-}
-
-/* Surf quick buttons */
-.surf-page .btn-surf-news {
-    background: linear-gradient(135deg, var(--surf-secondary) 0%, var(--surf-dark) 100%);
-}
-
-.surf-page .btn-waves {
-    background: linear-gradient(135deg, var(--surf-light) 0%, var(--surf-secondary) 100%);
-    color: var(--surf-dark);
-}
-
-.surf-page .btn-beginner {
-    background: linear-gradient(135deg, var(--surf-accent) 0%, #d69e2e 100%);
-    color: var(--surf-dark);
-}
-
-.surf-page .btn-popular-surf {
-    background: linear-gradient(135deg, var(--surf-secondary) 0%, var(--surf-dark) 100%);
+    background: var(--white);
 }
 
 /* Spots list */
 .spots-list {
     margin-top: 3rem;
     display: none;
+    animation: fadeUp 0.5s var(--ease) both;
 }
 
 .spots-list.active {
@@ -1121,25 +1921,28 @@ a.station-card:hover .card-arrow {
 }
 
 .spots-list h2 {
-    color: var(--surf-dark);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--neutral-900);
     margin-bottom: 1.5rem;
     text-align: center;
+    letter-spacing: -0.02em;
 }
 
 .spot-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1rem;
 }
 
 /* Spot cards */
 .spot-card {
     background: var(--white);
     padding: 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    transition: transform 0.3s;
-    border-left: 4px solid var(--surf-secondary);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--neutral-200);
+    transition: all 0.25s var(--ease);
+    border-left: 3px solid var(--surf-400);
     text-decoration: none;
     color: inherit;
     display: block;
@@ -1147,66 +1950,73 @@ a.station-card:hover .card-arrow {
 }
 
 .spot-card:hover {
-    transform: translateY(-5px);
-    border-left-color: var(--surf-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(37, 99, 235, 0.1);
+    background: linear-gradient(145deg, var(--white) 0%, var(--surf-50) 100%);
+    border-color: var(--surf-100);
+    border-left-color: var(--surf-600);
 }
 
 .spot-card h4 {
-    color: var(--surf-dark);
-    margin-bottom: 0.5rem;
-    font-size: 1.2rem;
+    font-size: 1.0625rem;
+    font-weight: 700;
+    color: var(--neutral-900);
+    margin-bottom: 0.375rem;
 }
 
 .spot-card .spot-location {
-    color: var(--text-light);
-    font-size: 0.9rem;
+    color: var(--neutral-500);
+    font-size: 0.8125rem;
 }
 
 .spot-card .wave-type {
-    color: var(--surf-primary);
-    font-size: 0.9rem;
-    margin: 0.3rem 0;
+    color: var(--surf-700);
+    font-size: 0.8125rem;
+    margin: 0.25rem 0;
 }
 
 .spot-card .wave-height {
-    color: var(--surf-secondary);
-    font-weight: bold;
-    margin: 0.5rem 0;
+    color: var(--neutral-800);
+    font-weight: 600;
+    font-size: 0.875rem;
+    margin: 0.375rem 0;
 }
 
 .spot-card .water-temp {
-    color: var(--text-light);
-    font-size: 0.85rem;
+    color: var(--neutral-500);
+    font-size: 0.8125rem;
 }
 
 .spot-card .best-season {
-    color: var(--surf-primary);
-    font-size: 0.85rem;
-    margin: 0.3rem 0;
+    color: var(--surf-600);
+    font-size: 0.8125rem;
+    margin: 0.25rem 0;
 }
 
 .spot-card .spot-level {
     display: inline-block;
-    padding: 0.25rem 0.75rem;
-    border-radius: 20px;
-    font-size: 0.8rem;
+    padding: 0.2rem 0.625rem;
+    border-radius: var(--radius-full);
+    font-size: 0.6875rem;
     font-weight: 600;
     margin-top: 0.5rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
 }
 
 .spot-card .spot-level.level-beginner {
-    background: #c6f6d5;
-    color: #22543d;
+    background: #dcfce7;
+    color: #166534;
 }
 
 .spot-card .spot-level.level-intermediate {
-    background: #feebc8;
-    color: #7b341e;
+    background: #fef3c7;
+    color: #92400e;
 }
 
 .spot-card .spot-level.level-advanced {
-    background: #fed7d7;
-    color: #822727;
+    background: #fee2e2;
+    color: #991b1b;
 }
 
 .spot-card .card-arrow {
@@ -1214,111 +2024,948 @@ a.station-card:hover .card-arrow {
     top: 50%;
     right: 1rem;
     transform: translateY(-50%);
-    font-size: 1.5rem;
-    color: var(--surf-accent);
+    font-size: 1.25rem;
+    color: var(--neutral-400);
     opacity: 0;
-    transition: opacity 0.3s, transform 0.3s;
+    transition: all 0.25s var(--ease);
 }
 
 .spot-card:hover .card-arrow {
     opacity: 1;
-    transform: translateY(-50%) translateX(5px);
+    transform: translateY(-50%) translateX(4px);
 }
 
 /* Spot detail page */
 .spot-detail {
-    max-width: 900px;
+    max-width: 880px;
     margin: 0 auto;
+    animation: fadeUp 0.5s var(--ease) both;
 }
 
 .spot-description {
-    background: var(--white);
+    background: linear-gradient(145deg, var(--surf-50) 0%, var(--white) 100%);
     padding: 1.5rem;
-    border-radius: 10px;
+    border-radius: var(--radius-md);
     margin-bottom: 2rem;
-    font-size: 1.1rem;
+    font-size: 1rem;
     line-height: 1.7;
-    color: var(--text-dark);
-    border-left: 4px solid var(--surf-accent);
+    color: var(--neutral-700);
+    border-left: 3px solid var(--surf-400);
+    border: 1px solid var(--surf-100);
+    border-left: 3px solid var(--surf-400);
 }
 
 /* Surf themed badges */
 .badge-popular.surf {
-    background: var(--surf-primary);
+    background: var(--surf-600);
+    color: var(--white);
 }
 
 .badge-beginner {
-    background: #c6f6d5;
-    color: #22543d;
+    background: #dcfce7;
+    color: #166534;
 }
 
 .badge-intermediate {
-    background: #feebc8;
-    color: #7b341e;
+    background: #fef3c7;
+    color: #92400e;
 }
 
 .badge-advanced {
-    background: #fed7d7;
-    color: #822727;
+    background: #fee2e2;
+    color: #991b1b;
 }
 
 /* Surf themed cards */
 .resort-card.surf h3 {
-    border-bottom-color: var(--surf-light);
-    color: var(--surf-dark);
+    border-bottom-color: var(--neutral-100);
+    color: var(--neutral-500);
 }
 
 /* Surf themed buttons */
 .btn-primary.surf {
-    background: linear-gradient(135deg, var(--surf-secondary) 0%, var(--surf-dark) 100%);
+    background: var(--surf-600);
 }
 
 .btn-primary.surf:hover {
-    box-shadow: 0 6px 20px rgba(43, 108, 176, 0.3);
+    background: var(--surf-700);
+    box-shadow: none;
 }
 
 .btn-secondary.surf {
-    border-color: var(--surf-secondary);
-    color: var(--surf-dark);
+    border-color: var(--neutral-300);
+    color: var(--neutral-700);
 }
 
 .btn-secondary.surf:hover {
-    background: var(--surf-light);
+    background: var(--neutral-50);
 }
 
 /* Surf news styles */
 .news-card.surf-news.featured {
-    border-left-color: var(--surf-primary);
-    background: linear-gradient(135deg, var(--white) 0%, #fffff0 100%);
+    border-left-color: var(--surf-500);
+    background: linear-gradient(145deg, var(--white) 0%, var(--surf-50) 100%);
 }
 
 .news-badge.surf {
-    background: var(--surf-primary);
+    background: var(--surf-600);
 }
 
 .news-category.surf {
-    background: var(--surf-light);
-    color: var(--surf-dark);
+    background: var(--surf-50);
+    color: var(--surf-700);
 }
 
 .read-more.surf {
-    color: var(--surf-primary);
+    color: var(--surf-700);
 }
 
 .btn-back-article.surf {
-    color: var(--surf-primary);
+    color: var(--neutral-500);
+}
+
+.btn-back-article.surf:hover {
+    color: var(--surf-700);
 }
 
 .related-resorts.surf h3 {
-    color: var(--surf-dark);
+    color: var(--neutral-500);
 }
 
 .related-resort-card.surf:hover {
-    background: var(--surf-light);
+    background: var(--surf-50);
+    border-color: var(--surf-200);
 }
 
 .related-resort-card.surf strong {
-    color: var(--surf-dark);
+    color: var(--neutral-900);
+}
+
+/* ========================================
+   Ski Page
+   ======================================== */
+
+.ski-page {
+    background: var(--white);
+}
+
+/* ========================================
+   Homepage — Immersive Snap Scroll
+   ======================================== */
+
+/* Header override for homepage: transparent over images */
+.home-page .home-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 200;
+    background: rgba(255, 255, 255, 0);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-bottom: none;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    transition: background 0.4s var(--ease), backdrop-filter 0.4s var(--ease);
+}
+
+.home-page .home-header.scrolled {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid var(--neutral-200);
+}
+
+.home-page .home-header h1 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--white);
+    transition: color 0.4s var(--ease);
+}
+
+.home-page .home-header.scrolled h1 {
+    color: var(--neutral-900);
+}
+
+.home-page .home-header nav a {
+    color: rgba(255, 255, 255, 0.8);
+    transition: all 0.3s var(--ease);
+}
+
+.home-page .home-header nav a:hover {
+    color: var(--white);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.home-page .home-header.scrolled nav a {
+    color: var(--neutral-500);
+}
+
+.home-page .home-header.scrolled nav a:hover {
+    color: var(--neutral-900);
+    background: var(--neutral-100);
+}
+
+/* Snap container */
+.snap-container {
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    scroll-padding: 0;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+}
+
+/* Each section */
+.snap-section {
+    height: 100vh;
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    image-rendering: high-quality;
+    -webkit-image-rendering: high-quality;
+    transform: translateZ(0);
+}
+
+/* Section content */
+.section-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    max-width: 680px;
+    padding: 0 2rem;
+    animation: fadeUp 0.8s var(--ease) both;
+}
+
+/* --- Section 1: Hero --- */
+.section-hero {
+    background-color: var(--neutral-900);
+}
+
+.section-overlay--hero {
+    background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.3) 0%,
+        rgba(0, 0, 0, 0.4) 50%,
+        rgba(0, 0, 0, 0.5) 100%
+    );
+}
+
+.section-hero h2 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+    margin-bottom: 1.25rem;
+    background: linear-gradient(135deg, var(--white) 0%, rgba(255, 255, 255, 0.7) 30%, var(--surf-accent-light) 60%, var(--surf-accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.3));
+}
+
+.section-hero p {
+    font-size: 1.1875rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.7;
+    max-width: 500px;
+    margin: 0 auto 3rem;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Scroll hint */
+.scroll-hint {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    animation: fadeIn 1s var(--ease) 0.8s both;
+}
+
+.scroll-arrow {
+    width: 24px;
+    height: 24px;
+    border-right: 2px solid rgba(255, 255, 255, 0.5);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+    transform: rotate(45deg);
+    animation: bounceDown 2s var(--ease) infinite;
+}
+
+@keyframes bounceDown {
+    0%, 100% { transform: rotate(45deg) translateY(0); opacity: 1; }
+    50% { transform: rotate(45deg) translateY(6px); opacity: 0.5; }
+}
+
+/* --- Overlays for image sections --- */
+.section-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+}
+
+.section-overlay--ski {
+    background: linear-gradient(
+        180deg,
+        rgba(15, 23, 42, 0.4) 0%,
+        rgba(15, 23, 42, 0.55) 40%,
+        rgba(15, 23, 42, 0.7) 100%
+    );
+}
+
+.section-overlay--surf {
+    background: linear-gradient(
+        180deg,
+        rgba(30, 58, 95, 0.35) 0%,
+        rgba(30, 58, 95, 0.5) 40%,
+        rgba(30, 58, 95, 0.7) 100%
+    );
+}
+
+/* Fallback dark background if no image */
+.section-ski {
+    background-color: var(--ski-900);
+}
+
+.section-surf {
+    background-color: var(--surf-900);
+}
+
+/* --- Section tag (PEAKS / WAVES) --- */
+.section-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 0.375rem 1rem;
+    border-radius: var(--radius-full);
+    margin-bottom: 1.5rem;
+}
+
+/* --- Section titles on images --- */
+.section-ski .section-content h2,
+.section-surf .section-content h2 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+    color: var(--white);
+    margin-bottom: 1rem;
+    /* Override any gradient text */
+    background: none;
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: unset;
+    background-clip: unset;
+}
+
+.section-ski .section-content p,
+.section-surf .section-content p {
+    font-size: 1.125rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.7;
+    max-width: 480px;
+    margin: 0 auto 2.5rem;
+}
+
+/* --- CTA Buttons --- */
+.section-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 1rem 2rem;
+    border-radius: var(--radius-full);
+    text-decoration: none;
+    font-family: var(--font);
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s var(--ease);
+    letter-spacing: -0.01em;
+}
+
+.section-cta--ski {
+    background: var(--white);
+    color: var(--ski-900);
+}
+
+.section-cta--ski:hover {
+    background: var(--ski-100);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.section-cta--surf {
+    background: var(--white);
+    color: var(--surf-900);
+}
+
+.section-cta--surf:hover {
+    background: var(--surf-100);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.cta-arrow {
+    transition: transform 0.3s var(--ease);
+    font-size: 1.125rem;
+}
+
+.section-cta:hover .cta-arrow {
+    transform: translateX(4px);
+}
+
+/* Footer reveal on scroll (ski & surf pages) */
+.ski-page footer,
+.surf-page footer {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+}
+
+.ski-page footer.visible,
+.surf-page footer.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ========================================
+   Immersive Page Hero (Ski & Surf pages)
+   ======================================== */
+
+.page-bg-hero {
+    position: relative;
+    width: 100%;
+    height: 85vh;
+    min-height: 520px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    margin-bottom: -2rem;
+    image-rendering: high-quality;
+    -webkit-image-rendering: high-quality;
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+.page-bg-hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: linear-gradient(to top, var(--neutral-50) 0%, transparent 100%);
+    pointer-events: none;
+}
+
+/* Break out of main's max-width */
+.ski-page main,
+.surf-page main {
+    max-width: 100%;
+    padding: 0;
+}
+
+.ski-page .search-section,
+.surf-page .search-section,
+.ski-page .stations-list,
+.surf-page .stations-list,
+.ski-page .spots-list,
+.surf-page .spots-list {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+/* ========================================
+   Immersive Dark Theme (below hero)
+   ======================================== */
+
+/* Dark page body for ski & surf */
+.ski-page {
+    background: var(--ski-900) !important;
+}
+
+.surf-page {
+    background: var(--surf-900) !important;
+}
+
+/* Hero bottom gradient blends into dark bg */
+.ski-page .page-bg-hero::after {
+    background: linear-gradient(to top, var(--ski-900) 0%, transparent 100%);
+}
+
+.surf-page .page-bg-hero::after {
+    background: linear-gradient(to top, var(--surf-900) 0%, transparent 100%);
+}
+
+/* Search panel — dark glassmorphism */
+.ski-page .search-section.expanded .search-panel {
+    background: rgba(255, 255, 255, 0.06) !important;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.surf-page .search-section.expanded .search-panel {
+    background: rgba(255, 255, 255, 0.06) !important;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.ski-page .search-panel h2,
+.surf-page .search-panel h2 {
+    color: var(--white) !important;
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    -webkit-text-fill-color: unset !important;
+    background-clip: unset !important;
+}
+
+.ski-page .search-bar-row input,
+.surf-page .search-bar-row input {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.12);
+    color: var(--white);
+}
+
+.ski-page .search-bar-row input::placeholder,
+.surf-page .search-bar-row input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.ski-page .search-bar-row input:focus,
+.surf-page .search-bar-row input:focus {
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.06);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.ski-page .btn-search {
+    background: var(--ski-accent) !important;
+    color: var(--white) !important;
+}
+
+.surf-page .btn-search {
+    background: var(--surf-accent) !important;
+    color: var(--neutral-900) !important;
+}
+
+/* Results list title — white */
+.ski-page .stations-list h2,
+.surf-page .spots-list h2 {
+    color: var(--white) !important;
+}
+
+/* Cards — dark glassmorphism */
+.ski-page .station-card {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-left: 3px solid var(--ski-accent);
+}
+
+.ski-page .station-card:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.2);
+    border-left-color: var(--ski-accent);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.ski-page .station-card h4 {
+    color: var(--white);
+}
+
+.ski-page .station-card .resort-location,
+.ski-page .station-card .resort-altitude,
+.ski-page .station-card .price-info {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.ski-page .station-card .snow-info {
+    color: var(--ski-300);
+}
+
+.ski-page .station-card .recent-snow {
+    background: rgba(99, 102, 241, 0.2);
+    color: var(--ski-200);
+}
+
+.ski-page .station-card .resort-stats {
+    color: rgba(255, 255, 255, 0.4);
+    border-top-color: rgba(255, 255, 255, 0.08);
+}
+
+.ski-page a.station-card .card-arrow {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* Surf cards — dark glassmorphism */
+.surf-page .spot-card {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-left: 3px solid var(--surf-400);
+    color: var(--white);
+}
+
+.surf-page .spot-card:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.2);
+    border-left-color: var(--surf-accent);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.surf-page .spot-card h4 {
+    color: var(--white);
+}
+
+.surf-page .spot-card .spot-location,
+.surf-page .spot-card .water-temp {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.surf-page .spot-card .wave-type,
+.surf-page .spot-card .best-season {
+    color: var(--surf-300);
+}
+
+.surf-page .spot-card .wave-height {
+    color: var(--white);
+}
+
+.surf-page .spot-card .card-arrow {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* No results text */
+.ski-page .no-results,
+.surf-page .no-results {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Footer on dark pages */
+.ski-page footer,
+.surf-page footer {
+    background: transparent !important;
+    border-top-color: rgba(255, 255, 255, 0.06) !important;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.ski-page footer .instagram a,
+.surf-page footer .instagram a {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.ski-page footer .instagram a:hover,
+.surf-page footer .instagram a:hover {
+    color: var(--white);
+}
+
+/* Ski: focus on K2, center-top */
+.ski-page .page-bg-hero {
+    background-position: center 20%;
+}
+
+/* Surf: centered on the wave */
+.surf-page .page-bg-hero {
+    background-position: center center;
+}
+
+/* Hero layout: two columns of buttons with title centered */
+.hero-overlay-layout {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 80px calc(4vw + 85px) 2rem;
+}
+
+/* Hero view switching (nav vs search) */
+.hero-view {
+    display: none;
+    width: 100%;
+    height: 100%;
+    animation: fadeUp 0.4s var(--ease);
+}
+
+.hero-view.active {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Search view fills center */
+.hero-view#heroSearch.active {
+    justify-content: center;
+}
+
+.hero-search-content {
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+}
+
+.hero-search-content h2 {
+    font-size: 2.25rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    color: var(--white);
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+    margin-bottom: 2rem;
+}
+
+.hero-search-bar {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.hero-search-bar input {
+    flex: 1;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    font-family: var(--font);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-lg);
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(12px) saturate(150%);
+    -webkit-backdrop-filter: blur(12px) saturate(150%);
+    color: var(--white);
+    outline: none;
+    transition: all var(--duration) var(--ease);
+}
+
+.hero-search-bar input::placeholder {
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.hero-search-bar input:focus {
+    border-color: rgba(255, 255, 255, 0.4);
+    background: rgba(0, 0, 0, 0.45);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.08);
+}
+
+.hero-search-submit {
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-family: var(--font);
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-lg);
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(12px) saturate(150%);
+    -webkit-backdrop-filter: blur(12px) saturate(150%);
+    color: var(--white);
+    cursor: pointer;
+    transition: all var(--duration) var(--ease);
+}
+
+.hero-search-submit:hover {
+    background: rgba(0, 0, 0, 0.5);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Each side column */
+.hero-side {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    max-width: 340px;
+    flex-shrink: 0;
+}
+
+.hero-side--left {
+    align-items: flex-start;
+}
+
+.hero-side--right {
+    align-items: flex-end;
+}
+
+/* Center title area */
+.hero-center {
+    text-align: center;
+    flex: 1;
+    padding: 0 2rem;
+}
+
+.hero-center h2 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+    color: var(--white);
+    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
+    margin: 0;
+}
+
+.hero-center p {
+    font-size: 1.0625rem;
+    color: rgba(255, 255, 255, 0.85);
+    margin: 0.75rem 0 0;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Overlay button style — glassmorphism */
+.hero-overlay-btn {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.125rem 1.5rem;
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    color: var(--white);
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(12px) saturate(150%);
+    -webkit-backdrop-filter: blur(12px) saturate(150%);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    transition: all 0.3s var(--ease);
+    font-family: var(--font);
+    cursor: pointer;
+    width: 100%;
+}
+
+.hero-side--right .hero-overlay-btn {
+    flex-direction: row-reverse;
+    text-align: right;
+}
+
+.hero-overlay-btn:hover {
+    background: rgba(0, 0, 0, 0.55);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+}
+
+.hero-overlay-btn .icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.hero-overlay-btn h3 {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.3;
+}
+
+.hero-overlay-btn p {
+    font-size: 0.75rem;
+    margin: 0.125rem 0 0;
+    opacity: 0.7;
+    line-height: 1.3;
+}
+
+/* Responsive hero */
+@media (max-width: 768px) {
+    .page-bg-hero {
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .hero-overlay-layout {
+        flex-direction: column;
+        justify-content: center;
+        gap: 1.5rem;
+        padding: 80px 1.25rem 2rem;
+    }
+
+    .hero-view.active {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .hero-side {
+        max-width: 100%;
+        width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .hero-side--right .hero-overlay-btn {
+        flex-direction: row;
+        text-align: left;
+    }
+
+    .hero-overlay-btn {
+        flex: 1 1 calc(50% - 0.5rem);
+        min-width: 140px;
+    }
+
+    .hero-search-content {
+        padding: 0 1rem;
+    }
+
+    .hero-search-content h2 {
+        font-size: 1.75rem;
+    }
+
+    .hero-search-bar {
+        flex-direction: column;
+    }
+
+    .hero-search-submit {
+        width: 100%;
+    }
+}
+
+/* Homepage credits section — black, small, hover-reveal */
+.snap-credits {
+    height: auto;
+    min-height: 0;
+    background: var(--neutral-900);
+    scroll-snap-align: end;
+    padding: 0;
+}
+
+.snap-footer {
+    text-align: center;
+    padding: 2rem 2rem;
+}
+
+.snap-footer p {
+    font-size: 0.8125rem;
+    color: var(--neutral-500);
+    margin: 0;
+    line-height: 1.6;
+}
+
+.snap-footer .instagram a {
+    color: var(--neutral-400);
+    text-decoration: none;
+    transition: color 0.2s var(--ease);
+}
+
+.snap-footer .instagram a:hover {
+    color: var(--white);
+}
+
+/* Homepage body */
+.home-page {
+    background: var(--neutral-900);
 }
 
 /* ========================================
@@ -1326,12 +2973,48 @@ a.station-card:hover .card-arrow {
    ======================================== */
 
 @media (max-width: 768px) {
+    header {
+        padding: 0 1rem;
+        height: 56px;
+    }
+
     header h1 {
+        font-size: 1.125rem;
+    }
+
+    .header-right {
+        gap: 0.125rem;
+    }
+
+    .header-search-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 0.8125rem;
+    }
+
+    .hero {
+        padding: 3rem 1rem 2rem;
+    }
+
+    .hero h2 {
         font-size: 2rem;
     }
 
-    header.compact h1 {
-        font-size: 1.8rem;
+    .page-hero {
+        padding: 2.5rem 1rem 2rem;
+    }
+
+    .page-hero h2 {
+        font-size: 1.75rem;
+    }
+
+    main {
+        padding: 0 1rem 3rem;
+    }
+
+    .activities {
+        grid-template-columns: 1fr;
+        gap: 1rem;
     }
 
     .search-bar {
@@ -1342,13 +3025,27 @@ a.station-card:hover .card-arrow {
         width: 100%;
     }
 
+    .quick-access {
+        grid-template-columns: 1fr;
+    }
+
     .quick-btn {
-        min-height: 150px;
+        min-height: 120px;
         padding: 1.5rem;
     }
 
     .quick-btn .icon {
-        font-size: 3rem;
+        font-size: 2rem;
+    }
+
+    .news-highlight .quick-btn {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .news-highlight .quick-btn h3,
+    .news-highlight .quick-btn p {
+        text-align: center;
     }
 
     .resort-actions {
@@ -1362,5 +3059,63 @@ a.station-card:hover .card-arrow {
 
     .resort-grid {
         grid-template-columns: 1fr;
+    }
+
+    .station-grid,
+    .spot-grid,
+    .gear-grid,
+    .news-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .activity-choices,
+    .level-choices,
+    .purchase-choices,
+    .location-choices {
+        grid-template-columns: 1fr;
+    }
+
+    .wizard-step h2 {
+        font-size: 1.5rem;
+    }
+
+    /* Homepage snap sections */
+    .section-hero h2 {
+        font-size: 2.25rem;
+    }
+
+    .section-ski .section-content h2,
+    .section-surf .section-content h2 {
+        font-size: 2.25rem;
+    }
+
+    .section-ski .section-content p,
+    .section-surf .section-content p {
+        font-size: 1rem;
+    }
+
+    .section-cta {
+        padding: 0.875rem 1.75rem;
+        font-size: 0.9375rem;
+    }
+
+    .home-page .home-header {
+        padding: 0 1rem;
+        height: 56px;
+    }
+
+    .article-header h1 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h2 {
+        font-size: 1.75rem;
+    }
+
+    nav a {
+        font-size: 0.8125rem;
+        padding: 0.375rem 0.625rem;
     }
 }

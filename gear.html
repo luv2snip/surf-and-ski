@@ -7,85 +7,82 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="gear-page">
-    <header class="compact">
-        <h1>Gear Finder</h1>
-        <p>Find the perfect equipment for your needs</p>
+    <header>
+        <h1><a href="index.html" style="text-decoration:none;color:inherit">Peak2Wave</a></h1>
         <nav>
             <a href="index.html">Home</a>
-            <a href="ski.html">Ski Resorts</a>
+            <a href="surf.html">Surf</a>
+            <a href="ski.html">Ski</a>
         </nav>
     </header>
 
     <main>
-        <section class="gear-wizard" id="gearWizard">
-            <div class="wizard-step active" id="step1">
-                <h2>What activity are you gearing up for?</h2>
-                <div class="activity-choices">
-                    <button class="choice-btn" onclick="selectActivity('ski')">
-                        <span class="choice-icon">⛷️</span>
-                        <span class="choice-label">Ski</span>
-                        <span class="choice-desc">Alpine skiing equipment</span>
-                    </button>
-                    <button class="choice-btn" onclick="selectActivity('snowboard')">
-                        <span class="choice-icon">🏂</span>
-                        <span class="choice-label">Snowboard</span>
-                        <span class="choice-desc">Snowboarding gear</span>
-                    </button>
-                    <button class="choice-btn" onclick="selectActivity('surf')">
-                        <span class="choice-icon">🏄</span>
-                        <span class="choice-label">Surf</span>
-                        <span class="choice-desc">Surfing equipment</span>
-                    </button>
+        <div class="gear-hero" id="gearHero" style="background-image: url('bg-gear.png');">
+            <div class="gear-hero-overlay"></div>
+            <div class="gear-hero-content" id="heroContent">
+                <!-- Step 1: Activity -->
+                <div class="hero-wizard-step active" id="heroStep1">
+                    <h2>What are you gearing up for?</h2>
+                    <div class="gear-hero-buttons">
+                        <a href="#" class="hero-overlay-btn" onclick="selectActivity('ski'); return false;">
+                            <span class="icon">⛷️</span>
+                            <div><h3>Ski</h3><p>Alpine skiing equipment</p></div>
+                        </a>
+                        <a href="#" class="hero-overlay-btn" onclick="selectActivity('snowboard'); return false;">
+                            <span class="icon">🏂</span>
+                            <div><h3>Snowboard</h3><p>Snowboarding gear</p></div>
+                        </a>
+                        <a href="#" class="hero-overlay-btn" onclick="selectActivity('surf'); return false;">
+                            <span class="icon">🏄</span>
+                            <div><h3>Surf</h3><p>Surfing equipment</p></div>
+                        </a>
+                    </div>
                 </div>
-            </div>
 
-            <div class="wizard-step" id="step2">
-                <h2>What's your level?</h2>
-                <div class="level-choices">
-                    <button class="choice-btn" onclick="selectLevel('beginner')">
-                        <span class="choice-icon">🌱</span>
-                        <span class="choice-label">Beginner</span>
-                        <span class="choice-desc">Just starting out</span>
-                    </button>
-                    <button class="choice-btn" onclick="selectLevel('intermediate')">
-                        <span class="choice-icon">📈</span>
-                        <span class="choice-label">Intermediate</span>
-                        <span class="choice-desc">Comfortable on most terrain</span>
-                    </button>
-                    <button class="choice-btn" onclick="selectLevel('advanced')">
-                        <span class="choice-icon">🏆</span>
-                        <span class="choice-label">Advanced</span>
-                        <span class="choice-desc">Expert looking for performance</span>
-                    </button>
+                <!-- Step 2: Level -->
+                <div class="hero-wizard-step" id="heroStep2">
+                    <h2>What's your level?</h2>
+                    <div class="gear-hero-buttons">
+                        <a href="#" class="hero-overlay-btn" onclick="selectLevel('beginner'); return false;">
+                            <span class="icon">🌱</span>
+                            <div><h3>Beginner</h3><p>Just starting out</p></div>
+                        </a>
+                        <a href="#" class="hero-overlay-btn" onclick="selectLevel('intermediate'); return false;">
+                            <span class="icon">📈</span>
+                            <div><h3>Intermediate</h3><p>Comfortable on most terrain</p></div>
+                        </a>
+                        <a href="#" class="hero-overlay-btn" onclick="selectLevel('advanced'); return false;">
+                            <span class="icon">🏆</span>
+                            <div><h3>Advanced</h3><p>Expert looking for performance</p></div>
+                        </a>
+                    </div>
+                    <a href="#" class="hero-back-btn" onclick="goToStep(1); return false;">← Back</a>
                 </div>
-                <button class="back-btn" onclick="goToStep(1)">← Back</button>
-            </div>
 
-            <div class="wizard-step" id="step3">
-                <h2>Are you looking to buy or rent?</h2>
-                <div class="purchase-choices">
-                    <button class="choice-btn" onclick="selectPurchase('buy')">
-                        <span class="choice-icon">🛒</span>
-                        <span class="choice-label">Buy</span>
-                        <span class="choice-desc">Own your equipment</span>
-                    </button>
-                    <button class="choice-btn" onclick="selectPurchase('rent')">
-                        <span class="choice-icon">🔄</span>
-                        <span class="choice-label">Rent</span>
-                        <span class="choice-desc">Rent for your trip</span>
-                    </button>
+                <!-- Step 3: Buy or Rent -->
+                <div class="hero-wizard-step" id="heroStep3">
+                    <h2>Buy or rent?</h2>
+                    <div class="gear-hero-buttons">
+                        <a href="#" class="hero-overlay-btn" onclick="selectPurchase('buy'); return false;">
+                            <span class="icon">🛒</span>
+                            <div><h3>Buy</h3><p>Own your equipment</p></div>
+                        </a>
+                        <a href="#" class="hero-overlay-btn" onclick="selectPurchase('rent'); return false;">
+                            <span class="icon">🔄</span>
+                            <div><h3>Rent</h3><p>Rent for your trip</p></div>
+                        </a>
+                    </div>
+                    <a href="#" class="hero-back-btn" onclick="goToStep(2); return false;">← Back</a>
                 </div>
-                <button class="back-btn" onclick="goToStep(2)">← Back</button>
-            </div>
 
-            <div class="wizard-step" id="step4">
-                <h2>Where will you be using your gear?</h2>
-                <div class="location-choices" id="locationChoices">
-                    <!-- Location options will be dynamically inserted based on activity -->
+                <!-- Step 4: Location -->
+                <div class="hero-wizard-step" id="heroStep4">
+                    <h2>Where will you ride?</h2>
+                    <div class="gear-hero-buttons" id="locationButtons"></div>
+                    <a href="#" class="hero-back-btn" onclick="goToStep(3); return false;">← Back</a>
                 </div>
-                <button class="back-btn" onclick="goToStep(3)">← Back</button>
             </div>
-        </section>
+        </div>
 
         <section class="gear-results" id="gearResults" style="display: none;">
             <div class="results-header">
@@ -93,9 +90,7 @@
                 <p id="resultsSubtitle"></p>
                 <button class="restart-btn" onclick="restartWizard()">Start Over</button>
             </div>
-            <div class="gear-grid" id="gearGrid">
-                <!-- Gear recommendations will be displayed here -->
-            </div>
+            <div class="gear-grid" id="gearGrid"></div>
         </section>
     </main>
 
@@ -107,12 +102,7 @@
     <script src="data_ski_gear.js"></script>
     <script src="data_surf_gear.js"></script>
     <script>
-        let userChoices = {
-            activity: null,
-            level: null,
-            purchase: null,
-            location: null
-        };
+        let userChoices = { activity: null, level: null, purchase: null, location: null };
 
         function selectActivity(activity) {
             userChoices.activity = activity;
@@ -131,44 +121,37 @@
         }
 
         function updateLocationOptions() {
-            const container = document.getElementById('locationChoices');
+            const container = document.getElementById('locationButtons');
 
             if (userChoices.activity === 'surf') {
                 container.innerHTML = `
-                    <button class="choice-btn" onclick="selectLocation('atlantic-europe')">
-                        <span class="choice-icon">🌊</span>
-                        <span class="choice-label">Atlantic Europe</span>
-                        <span class="choice-desc">France, Portugal, Spain, UK</span>
-                    </button>
-                    <button class="choice-btn" onclick="selectLocation('pacific')">
-                        <span class="choice-icon">🏝️</span>
-                        <span class="choice-label">Pacific</span>
-                        <span class="choice-desc">California, Hawaii, Australia</span>
-                    </button>
-                    <button class="choice-btn" onclick="selectLocation('tropical')">
-                        <span class="choice-icon">🌴</span>
-                        <span class="choice-label">Tropical</span>
-                        <span class="choice-desc">Bali, Costa Rica, Caribbean</span>
-                    </button>
+                    <a href="#" class="hero-overlay-btn" onclick="selectLocation('atlantic-europe'); return false;">
+                        <span class="icon">🌊</span>
+                        <div><h3>Atlantic Europe</h3><p>France, Portugal, Spain, UK</p></div>
+                    </a>
+                    <a href="#" class="hero-overlay-btn" onclick="selectLocation('pacific'); return false;">
+                        <span class="icon">🏝️</span>
+                        <div><h3>Pacific</h3><p>California, Hawaii, Australia</p></div>
+                    </a>
+                    <a href="#" class="hero-overlay-btn" onclick="selectLocation('tropical'); return false;">
+                        <span class="icon">🌴</span>
+                        <div><h3>Tropical</h3><p>Bali, Costa Rica, Caribbean</p></div>
+                    </a>
                 `;
             } else {
-                // Ski or Snowboard locations
                 container.innerHTML = `
-                    <button class="choice-btn" onclick="selectLocation('alps')">
-                        <span class="choice-icon">🏔️</span>
-                        <span class="choice-label">The Alps</span>
-                        <span class="choice-desc">France, Switzerland, Austria, Italy</span>
-                    </button>
-                    <button class="choice-btn" onclick="selectLocation('europe-other')">
-                        <span class="choice-icon">🌍</span>
-                        <span class="choice-label">Other Europe</span>
-                        <span class="choice-desc">Scandinavia, Pyrenees, etc.</span>
-                    </button>
-                    <button class="choice-btn" onclick="selectLocation('worldwide')">
-                        <span class="choice-icon">🌎</span>
-                        <span class="choice-label">Worldwide</span>
-                        <span class="choice-desc">North America, Japan, etc.</span>
-                    </button>
+                    <a href="#" class="hero-overlay-btn" onclick="selectLocation('alps'); return false;">
+                        <span class="icon">🏔️</span>
+                        <div><h3>The Alps</h3><p>France, Switzerland, Austria, Italy</p></div>
+                    </a>
+                    <a href="#" class="hero-overlay-btn" onclick="selectLocation('europe-other'); return false;">
+                        <span class="icon">🌍</span>
+                        <div><h3>Other Europe</h3><p>Scandinavia, Pyrenees, etc.</p></div>
+                    </a>
+                    <a href="#" class="hero-overlay-btn" onclick="selectLocation('worldwide'); return false;">
+                        <span class="icon">🌎</span>
+                        <div><h3>Worldwide</h3><p>North America, Japan, etc.</p></div>
+                    </a>
                 `;
             }
         }
@@ -179,30 +162,19 @@
         }
 
         function goToStep(stepNum) {
-            document.querySelectorAll('.wizard-step').forEach(step => {
-                step.classList.remove('active');
-            });
-            document.getElementById(`step${stepNum}`).classList.add('active');
+            document.querySelectorAll('.hero-wizard-step').forEach(step => step.classList.remove('active'));
+            document.getElementById(`heroStep${stepNum}`).classList.add('active');
         }
 
         function showResults() {
-            document.getElementById('gearWizard').style.display = 'none';
+            document.getElementById('gearHero').style.display = 'none';
             document.getElementById('gearResults').style.display = 'block';
 
-            const activityLabel = {
-                'ski': 'Skiing',
-                'snowboard': 'Snowboarding',
-                'surf': 'Surfing'
-            }[userChoices.activity];
-
-            const levelLabel = {
-                'beginner': 'Beginner',
-                'intermediate': 'Intermediate',
-                'advanced': 'Advanced'
-            }[userChoices.level];
+            const activityLabel = { 'ski': 'Skiing', 'snowboard': 'Snowboarding', 'surf': 'Surfing' }[userChoices.activity];
+            const levelLabel = { 'beginner': 'Beginner', 'intermediate': 'Intermediate', 'advanced': 'Advanced' }[userChoices.level];
 
             document.getElementById('resultsSubtitle').textContent =
-                `${activityLabel} gear for ${levelLabel} level - ${userChoices.purchase === 'buy' ? 'Purchase' : 'Rental'} options`;
+                `${activityLabel} gear for ${levelLabel} level — ${userChoices.purchase === 'buy' ? 'Purchase' : 'Rental'} options`;
 
             displayGearRecommendations();
         }
@@ -214,17 +186,11 @@
             let gearData = [];
 
             if (userChoices.activity === 'ski') {
-                gearData = skiGear.filter(g =>
-                    g.level === userChoices.level || g.level === 'all'
-                );
+                gearData = skiGear.filter(g => g.level === userChoices.level || g.level === 'all');
             } else if (userChoices.activity === 'snowboard') {
-                gearData = snowboardGear.filter(g =>
-                    g.level === userChoices.level || g.level === 'all'
-                );
+                gearData = snowboardGear.filter(g => g.level === userChoices.level || g.level === 'all');
             } else if (userChoices.activity === 'surf') {
-                gearData = surfGear.filter(g =>
-                    g.level === userChoices.level || g.level === 'all'
-                );
+                gearData = surfGear.filter(g => g.level === userChoices.level || g.level === 'all');
             }
 
             if (gearData.length === 0) {
@@ -250,7 +216,7 @@
                         <span class="price-value">€${Math.round(item.priceRange.min * priceMultiplier)} - €${Math.round(item.priceRange.max * priceMultiplier)}${priceLabel}</span>
                     </div>
                     <div class="gear-brands">
-                        <span class="brands-label">Recommended brands:</span>
+                        <span class="brands-label">Recommended brands: </span>
                         <span class="brands-list">${item.brands ? item.brands.join(', ') : 'Various'}</span>
                     </div>
                 `;
@@ -259,14 +225,9 @@
         }
 
         function restartWizard() {
-            userChoices = {
-                activity: null,
-                level: null,
-                purchase: null,
-                location: null
-            };
+            userChoices = { activity: null, level: null, purchase: null, location: null };
             document.getElementById('gearResults').style.display = 'none';
-            document.getElementById('gearWizard').style.display = 'block';
+            document.getElementById('gearHero').style.display = 'flex';
             goToStep(1);
         }
     </script>

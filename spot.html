@@ -7,9 +7,8 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="surf-page">
-    <header class="compact surf-header">
-        <h1 id="spotName">Loading...</h1>
-        <p id="spotLocation"></p>
+    <header>
+        <h1><a href="index.html" style="text-decoration:none;color:inherit">Peak2Wave</a></h1>
         <nav>
             <a href="index.html">Home</a>
             <a href="surf.html">All Spots</a>
@@ -17,9 +16,12 @@
     </header>
 
     <main>
-        <div class="spot-detail" id="spotDetail">
-            <!-- Content loaded by JavaScript -->
+        <div class="page-hero" id="spotHero">
+            <h2 id="spotName">Loading...</h2>
+            <p id="spotLocation"></p>
         </div>
+
+        <div class="spot-detail" id="spotDetail"></div>
 
         <div class="resort-not-found" id="notFound" style="display: none;">
             <h2>Spot not found</h2>
@@ -35,7 +37,6 @@
 
     <script src="data_surf_resort.js"></script>
     <script>
-        // Get spot ID from URL
         const urlParams = new URLSearchParams(window.location.search);
         const spotId = urlParams.get('id');
 
@@ -44,33 +45,25 @@
 
             if (!spot) {
                 document.getElementById('spotDetail').style.display = 'none';
+                document.getElementById('spotHero').style.display = 'none';
                 document.getElementById('notFound').style.display = 'block';
-                document.getElementById('spotName').textContent = 'Not Found';
                 document.title = 'Spot Not Found - Peak2Wave';
                 return;
             }
 
-            // Update page title
             document.title = `${spot.name} - Peak2Wave`;
             document.getElementById('spotName').textContent = spot.name;
             document.getElementById('spotLocation').textContent = `${spot.region}, ${spot.country}`;
 
-            // Level badge colors
             const levelBadgeClass = {
                 'beginner': 'badge-beginner',
                 'intermediate': 'badge-intermediate',
                 'advanced': 'badge-advanced'
             }[spot.level];
 
-            // Crowd indicator
-            const crowdEmoji = {
-                'low': '🟢',
-                'medium': '🟡',
-                'high': '🔴'
-            }[spot.crowd];
+            const crowdEmoji = { 'low': '🟢', 'medium': '🟡', 'high': '🔴' }[spot.crowd];
 
-            // Build detail content
-            const detailHTML = `
+            document.getElementById('spotDetail').innerHTML = `
                 <div class="resort-hero surf">
                     <div class="resort-badges">
                         ${spot.popular ? '<span class="badge badge-popular surf">Popular</span>' : ''}
@@ -130,18 +123,15 @@
 
                 <div class="resort-actions">
                     <a href="${spot.website}" target="_blank" rel="noopener noreferrer" class="btn-primary surf">
-                        🌐 Visit Official Website
+                        Visit Official Website
                     </a>
                     <a href="surf.html" class="btn-secondary surf">
                         ← Back to all spots
                     </a>
                 </div>
             `;
-
-            document.getElementById('spotDetail').innerHTML = detailHTML;
         }
 
-        // Load spot on page load
         loadSpot();
     </script>
 </body>

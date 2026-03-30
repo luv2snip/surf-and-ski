@@ -7,9 +7,8 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="ski-page">
-    <header class="compact ski-header">
-        <h1 id="resortName">Loading...</h1>
-        <p id="resortLocation"></p>
+    <header>
+        <h1><a href="index.html" style="text-decoration:none;color:inherit">Peak2Wave</a></h1>
         <nav>
             <a href="index.html">Home</a>
             <a href="ski.html">All Resorts</a>
@@ -17,9 +16,12 @@
     </header>
 
     <main>
-        <div class="resort-detail" id="resortDetail">
-            <!-- Content loaded by JavaScript -->
+        <div class="page-hero" id="resortHero">
+            <h2 id="resortName">Loading...</h2>
+            <p id="resortLocation"></p>
         </div>
+
+        <div class="resort-detail" id="resortDetail"></div>
 
         <div class="resort-not-found" id="notFound" style="display: none;">
             <h2>Resort not found</h2>
@@ -35,7 +37,6 @@
 
     <script src="data_ski_resort.js"></script>
     <script>
-        // Get resort ID from URL
         const urlParams = new URLSearchParams(window.location.search);
         const resortId = urlParams.get('id');
 
@@ -44,22 +45,19 @@
 
             if (!resort) {
                 document.getElementById('resortDetail').style.display = 'none';
+                document.getElementById('resortHero').style.display = 'none';
                 document.getElementById('notFound').style.display = 'block';
-                document.getElementById('resortName').textContent = 'Not Found';
                 document.title = 'Resort Not Found - Peak2Wave';
                 return;
             }
 
-            // Update page title
             document.title = `${resort.name} - Peak2Wave`;
             document.getElementById('resortName').textContent = resort.name;
             document.getElementById('resortLocation').textContent = `${resort.region}, ${resort.country}`;
 
-            // Calculate snow/price ratio
             const snowRatio = (resort.snowBase.upper / resort.price).toFixed(2);
 
-            // Build detail content
-            const detailHTML = `
+            document.getElementById('resortDetail').innerHTML = `
                 <div class="resort-hero">
                     <div class="resort-badges">
                         ${resort.popular ? '<span class="badge badge-popular">Popular</span>' : ''}
@@ -125,18 +123,15 @@
 
                 <div class="resort-actions">
                     <a href="${resort.website}" target="_blank" rel="noopener noreferrer" class="btn-primary">
-                        🌐 Visit Official Website
+                        Visit Official Website
                     </a>
                     <a href="ski.html" class="btn-secondary">
                         ← Back to all resorts
                     </a>
                 </div>
             `;
-
-            document.getElementById('resortDetail').innerHTML = detailHTML;
         }
 
-        // Load resort on page load
         loadResort();
     </script>
 </body>
