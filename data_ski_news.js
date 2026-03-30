@@ -20,7 +20,7 @@ But why is he retiring now? Alexis Pinturault was held back by two serious injur
 His last race on French soil was unfortunately cancelled, as heavy snowfall made the Courchevel super-G course unsafe to race on the day after his announcement.
 </p>
         `,
-        relatedResorts: ["Courchevel"]
+        relatedResorts: ["courchevel"]
     },
     {
         id: "vail-resorts-worst-season-2026",
